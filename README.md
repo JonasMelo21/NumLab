@@ -1,2 +1,1 @@
-# NumLab
-NumLab - Laboratório para Métodos Numéricos
+ # NumLab - Laboratório para Métodos Numéricos
