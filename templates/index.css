@@ -1,0 +1,134 @@
+/* Estilização Global */
+body {
+    background-color: #1b1f3b; /* Azul-escuro técnico */
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    
+}
+
+/* Navbar */
+.navbar {
+    background-color: #242a4b; /* Azul escuro diferenciado */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #4db8ff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4db8ff !important;
+}
+
+/* Cabeçalho */
+.hero {
+    background: linear-gradient(135deg, #1b1f3b 0%, #2c2f4a 100%);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #4db8ff;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Container principal */
+.container {
+    margin-top: 40px;
+}
+
+/* Títulos das seções */
+h2 {
+    color: #4db8ff; /* Azul-claro para destaque */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Linha divisória entre seções */
+.section-divider {
+    border-bottom: 3px solid #4db8ff;
+    width: 80%;
+    margin: 40px auto;
+}
+
+/* Estilização dos cards */
+.card {
+    background-color: #2c2f4a; /* Cinza-azulado */
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Ajuste na altura mínima dos cards */
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(77, 184, 255, 0.3);
+}
+
+/* Título dentro dos cards */
+.card-title {
+    color: #4db8ff;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Texto dentro dos cards */
+.card-text {
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.9;
+    color: #4da8fa;
+}
+
+/* Corpo do card */
+.card-body {
+    flex-grow: 1; /* Garante que o corpo do card ocupe o máximo de espaço disponível */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilizando a imagem dentro dos cards */
+.card-img-top-custom {
+    width: 100%;
+    height: 180px; /* Ajusta a altura para todos os cards de forma consistente */
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Cards menores e mais enxutos */
+.card-small {
+    min-height: 320px; /* Ajuste para garantir que todos os cards tenham a mesma altura */
+    max-width: 100%;  /* Deixa os cards mais estreitos */
+    margin: auto; /* Centraliza */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajustando espaçamento entre os cards */
+.row-cols-1 .col,
+.row-cols-md-2 .col,
+.row-cols-lg-4 .col {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: center; /* Garante que os cards se alinhem corretamente */
+}
