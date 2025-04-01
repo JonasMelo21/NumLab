@@ -33,16 +33,18 @@ body {
     opacity: 0.8;
 }
 
-/* Formulário de Login */
+/* Formulário de Cadastro */
 .card-cadastro {
     background-color: #2c2f4a; /* Cinza-azulado */
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(77, 184, 255, 0.2);
+    margin-bottom: 40px; /* Adicionado para "levantar" o card e dar espaço às mensagens */
 }
 
 .card-body {
     padding: 20px;
+    padding-bottom: 60px; /* Aumentado para dar espaço às mensagens */
 }
 
 .form-label {
@@ -74,7 +76,7 @@ body {
     background-color: #3a98c4;
 }
 
-/* Link de cadastro */
+/* Link de cadastro (não usado aqui, mas mantido por consistência) */
 .text-center p {
     font-size: 0.9rem;
     color: #4db8ff;
@@ -86,4 +88,11 @@ body {
 
 .text-center a:hover {
     text-decoration: underline;
+}
+
+/* Estilização das mensagens para garantir visibilidade */
+.alert {
+    margin-top: 20px; /* Espaço acima da mensagem */
+    padding: 10px; /* Padding interno reduzido para ocupar menos espaço */
+    font-size: 0.9rem; /* Tamanho de fonte menor para caber melhor */
 }
