@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumLab - Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/cadastro.css') }}">
+
+    <!-- Favicon do NumLab-->
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',path='img/faviconNumLab.png')}}"> 
+    <link rel="shortcut icon" href="{{url_for('static',path='img/faviconNumLab.png')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">NumLab</a>
+        </div>
+    </nav>
+
+    <!-- Cabeçalho -->
+    <header class="hero">
+        <div class="container text-center">
+            <h1>Cadastro</h1>
+            <p>Entre com suas informações.</p>
+        </div>
+    </header>
+
+    <!-- Formulário de Login -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-cadastro">
+                    <div class="card-body">
+                        <form action="cadastro" method="POST">
+                            <div class="mb-3">
+                                <label for="nomeCompleto" class="form-label">Nome Completo</label>
+                                <input type="text" class ="form-control" name="nomeCompleto" id="nomeCompleto" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailCadastro" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="emailCadastro" id="emailCadastro" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="usuarioCadastro" class="form-label">Nome de Usuário</label>
+                                <input type="text" class="form-control" id="usuarioCadastro" name="usuarioCadastro" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class ="form-control" name="confirmaSenha" id="confirmaSenha" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" name="btnCadastro" id="btnCadastro">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

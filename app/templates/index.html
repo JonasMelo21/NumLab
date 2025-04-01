@@ -5,22 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NumLab - Página Inicial</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="index.css"> <!-- Arquivo CSS externo -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/index.css') }}"> <!-- Arquivo CSS externo -->
+    
+    <!-- Favicon do NumLab-->
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',path='img/faviconNumLab.png')}}"> 
+    <link rel="shortcut icon" href="{{url_for('static',path='img/faviconNumLab.png')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+
+
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">NumLab</a>
+            <a class="navbar-brand" href="/">NumLab</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cadastro">Cadastro</a></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +50,7 @@
                 <div class="card card-small p-3">
                     <a href="raizes.html">
                         <div class="card-body">
-                            <img src="logarithm.png" alt="Raízes de Funções" class="card-img-top-custom">
+                            <img src="{{ url_for('static', path='img/logarithm.png') }}" alt="Raízes de Funções" class="card-img-top-custom">
                             <h5 class="card-title">Raízes de Funções com Uma Variável</h5>
                             <p class="card-text">Métodos Numéricos para Encontrar Raízes de Equações do Tipo f(x) = 0.</p>
                         </div>
@@ -52,7 +61,7 @@
                 <div class="card card-small p-3">
                     <a href="integracao_diferenciacao.html">
                         <div class="card-body">
-                            <img src="integral.png" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/integral.png')}}" alt="Diferenciação e Integração Numérica" class="card-img-top-custom">
                             <h5 class="card-title">Diferenciação e Integração Numérica</h5>
                             <p class="card-text">Métodos Numéricos para Encontrar Derivadas e Integrais.</p>
                         </div>
@@ -63,7 +72,7 @@
                 <a href="equacoes_diferenciais.html">
                     <div class="card card-small p-3">
                         <div class="card-body">
-                            <img src="graphs.png" alt="Equações Diferenciais" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/graphic.png') }}" alt="Equações Diferenciais" class="card-img-top-custom">
                             <h5 class="card-title">Equações Diferenciais</h5>
                             <p class="card-text">Resolução de Problemas de Valor Inicial e de Contorno para Equações Diferenciais.</p>
                         </div>
@@ -74,9 +83,9 @@
                 <a href="edp.html">
                     <div class="card card-small p-3">
                         <div class="card-body">
-                            <img src="edp.png" alt="Equações Diferenciais Parciais" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/edp.png')}}" alt="Equações Diferenciais Parciais" alt="Equações Diferenciais Parciais" class="card-img-top-custom">
                             <h5 class="card-title">Equações Diferenciais Parciais</h5>
-                            <p class="card-text">Cálculo de Soluções de EDP's.</p>
+                            <p class="card-text">Cálculo de Soluções de EDPs.</p>
                         </div>
                     </div>
                 </a>
@@ -91,7 +100,7 @@
                 <div class="card card-small p-3">
                     <a href="metodos_diretos.html">
                         <div class="card-body">
-                            <img src="formula.png" alt="Métodos Diretos" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/formula.png')}}" alt="Métodos Diretos" class="card-img-top-custom">
                             <h5 class="card-title">Métodos Diretos para Sistemas Lineares</h5>
                             <p class="card-text">Resolução de sistemas lineares via eliminação e decomposição.</p>
                         </div>
@@ -102,7 +111,7 @@
                 <div class="card card-small p-3">
                     <a href="tecnicas_iterativas.html">
                         <div class="card-body">
-                            <img src="binary.png" alt="Técnicas Iterativas" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/binary.png')}}" alt="Técnicas Iterativas" class="card-img-top-custom">
                             <h5 class="card-title">Técnicas Iterativas em Álgebra Linear</h5>
                             <p class="card-text">Métodos iterativos para sistemas lineares e não lineares.</p>
                         </div>
@@ -113,7 +122,7 @@
                 <div class="card card-small p-3">
                     <a href="autovalores_autovetores.html">
                         <div class="card-body">
-                            <img src="vector.png" alt="Autovetores e Autovalores" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/vector.png')}}" alt="Autovetores e Autovalores" class="card-img-top-custom">
                             <h5 class="card-title">Autovetores e Autovalores</h5>
                             <p class="card-text">Cálculo de Auto Vetores e Auto Valores de Matrizes.</p>
                         </div>
@@ -124,7 +133,7 @@
                 <div class="card card-small p-3">
                     <a href="sistemas_nao_lineares.html">
                         <div class="card-body">
-                            <img src="equation.png" alt="Sistemas Não Lineares" class="card-img-top-custom">
+                            <img src="{{url_for('static',path='img/equation.png')}}" alt="Sistemas Não Lineares" class="card-img-top-custom">
                             <h5 class="card-title">Sistemas Não Lineares</h5>
                             <p class="card-text">Soluções Numéricas para Sistemas Não Lineares.</p>
                         </div>
