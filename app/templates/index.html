@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NumLab - Página Inicial</title>
+    <title>NumLab - Laboratório de Análise Numérica</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', path='css/index.css') }}"> <!-- Arquivo CSS externo -->
-    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static',path='css/index.css')}}">
+
     <!-- Favicon do NumLab-->
     <link rel="icon" type="image/x-icon" href="{{url_for('static',path='img/faviconNumLab.png')}}"> 
     <link rel="shortcut icon" href="{{url_for('static',path='img/faviconNumLab.png')}}" type="image/x-icon">
@@ -14,135 +17,453 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
 
-
 </head>
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">NumLab</a>
+            <!-- Logo/Marca -->
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-calculator me-2"></i>NumLab
+            </a>
+            
+            <!-- Botão Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
+            <!-- Itens da Navbar -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/api/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/api/cadastro">Cadastro</a></li>
+                    <!-- Link único para login -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/login">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Cabeçalho -->
-    <header class="hero">
-        <div class="container text-center">
-            <h1>Bem-Vindo ao NumLab</h1>
-            <p>Laboratório Para Métodos Numéricos</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>NumLab - Laboratório de Análise Numérica</h1>
         </div>
-    </header>
+    </section>
 
-    <div class="container">
-        <h2>Cálculo e Funções</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="raizes.html">
-                        <div class="card-body">
-                            <img src="{{ url_for('static', path='img/logarithm.png') }}" alt="Raízes de Funções" class="card-img-top-custom">
-                            <h5 class="card-title">Raízes de Funções com Uma Variável</h5>
-                            <p class="card-text">Métodos Numéricos para Encontrar Raízes de Equações do Tipo f(x) = 0.</p>
-                        </div>
-                    </a>
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Cálculo e Funções -->
+        <section id="calculus" class="mb-5">
+            <h2 class="section-title"><i class="fas fa-function me-2"></i>Cálculo e Funções</h2>
+            
+            <!-- Raízes de Funções -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Cálculo de Raízes de Funções</h3>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="integracao_diferenciacao.html">
+                
+                <!-- Card Método da Bisecção-->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método da Bisseção</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/integral.png')}}" alt="Diferenciação e Integração Numérica" class="card-img-top-custom">
-                            <h5 class="card-title">Diferenciação e Integração Numérica</h5>
-                            <p class="card-text">Métodos Numéricos para Encontrar Derivadas e Integrais.</p>
-                        </div>
-                    </a>
-                </div>                
-            </div>
-            <div class="col">
-                <a href="equacoes_diferenciais.html">
-                    <div class="card card-small p-3">
-                        <div class="card-body">
-                            <img src="{{url_for('static',path='img/graphic.png') }}" alt="Equações Diferenciais" class="card-img-top-custom">
-                            <h5 class="card-title">Equações Diferenciais</h5>
-                            <p class="card-text">Resolução de Problemas de Valor Inicial e de Contorno para Equações Diferenciais.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p class="card-text">Método de busca incremental que divide o intervalo ao meio a cada iteração.</p>
+                            <!-- Exemplo para o método da bisseção -->
+                            <a href="/api/metodos/bissecao" class="btn btn-numlab">
+                                <i class="fas fa-book-open me-1"></i> Detalhes
+                            </a>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="edp.html">
-                    <div class="card card-small p-3">
+                </div>
+                
+                <!-- Card Método de Newton-->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Newton-Raphson</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/edp.png')}}" alt="Equações Diferenciais Parciais" alt="Equações Diferenciais Parciais" class="card-img-top-custom">
-                            <h5 class="card-title">Equações Diferenciais Parciais</h5>
-                            <p class="card-text">Cálculo de Soluções de EDPs.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p class="card-text">Utiliza a derivada da função para convergir rapidamente para a raiz.</p>
+                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                                <i class="fas fa-book-open me-1"></i> Detalhes
+                            </a>
                         </div>
                     </div>
-                </a>
-            </div>
-        </div>
+                </div>
 
-        <div class="section-divider"></div>
-
-        <h2>Álgebra Linear Numérica</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="metodos_diretos.html">
+                <!-- Card Método da Secante-->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método da Secante</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/formula.png')}}" alt="Métodos Diretos" class="card-img-top-custom">
-                            <h5 class="card-title">Métodos Diretos para Sistemas Lineares</h5>
-                            <p class="card-text">Resolução de sistemas lineares via eliminação e decomposição.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p class="card-text">Versão aproximada do método de Newton que não requer o cálculo da derivada.</p>
+                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                                <i class="fas fa-book-open me-1"></i> Detalhes
+                            </a>
                         </div>
-                    </a>
+                    </div>
+                </div>
+                
+                
+                <!-- Card Método de Muller-->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Muller</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p class="card-text">Generalização do método da secante que usa uma aproximação quadrática, eficiente para raízes complexas.</p>
+                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                                <i class="fas fa-book-open me-1"></i> Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            
+            <!-- Diferenciação e Integração Numérica -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Diferenciação e Integração Numérica</h3>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Diferenças Finitas</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-ruler-horizontal"></i>
+                            </div>
+                            <p class="card-text">Aproximação de derivadas usando diferenças progressivas, regressivas e centrais.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Regra do Trapézio</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <p class="card-text">Método de integração que aproxima a área sob a curva usando trapézios.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Quadraturas de Gauss</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-superscript"></i>
+                            </div>
+                            <p class="card-text">Métodos de integração numérica que escolhem pontos de avaliação ótimos.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="tecnicas_iterativas.html">
+            
+            <!-- Equações Diferenciais -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Equações Diferenciais</h3>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Problemas de Valor Inicial</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/binary.png')}}" alt="Técnicas Iterativas" class="card-img-top-custom">
-                            <h5 class="card-title">Técnicas Iterativas em Álgebra Linear</h5>
-                            <p class="card-text">Métodos iterativos para sistemas lineares e não lineares.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <p class="card-text">Métodos de Euler, Runge-Kutta e preditor-corretor para EDOs.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
                         </div>
-                    </a>
-                </div>                
-            </div>
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="autovalores_autovetores.html">
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Problemas de Valor de Contorno</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/vector.png')}}" alt="Autovetores e Autovalores" class="card-img-top-custom">
-                            <h5 class="card-title">Autovetores e Autovalores</h5>
-                            <p class="card-text">Cálculo de Auto Vetores e Auto Valores de Matrizes.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-border-style"></i>
+                            </div>
+                            <p class="card-text">Métodos de diferenças finitas e elementos finitos para EDOs com condições de contorno.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card-small p-3">
-                    <a href="sistemas_nao_lineares.html">
+            
+            <!-- Equações Diferenciais Parciais -->
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Equações Diferenciais Parciais</h3>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método das Diferenças Finitas</div>
                         <div class="card-body">
-                            <img src="{{url_for('static',path='img/equation.png')}}" alt="Sistemas Não Lineares" class="card-img-top-custom">
-                            <h5 class="card-title">Sistemas Não Lineares</h5>
-                            <p class="card-text">Soluções Numéricas para Sistemas Não Lineares.</p>
+                            <div class="method-icon">
+                                <i class="fas fa-border-all"></i>
+                            </div>
+                            <p class="card-text">Aproximação de derivadas parciais usando diferenças finitas.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
                         </div>
-                    </a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Elementos Finitos</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <p class="card-text">Discretização do domínio em elementos finitos para resolver EDPs.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Métodos Espectrais</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <p class="card-text">Representação da solução como combinação de funções base ortogonais.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- Álgebra Linear Numérica -->
+        <section id="algebra" class="mb-5">
+            <h2 class="section-title"><i class="fas fa-vector-square me-2"></i>Álgebra Linear Numérica</h2>
+            
+            <!-- Autovalores e Autovetores -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Autovalores e Autovetores</h3>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método da Potência</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <p class="card-text">Encontra o autovalor dominante e seu autovetor correspondente.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método QR</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p class="card-text">Método iterativo para encontrar todos os autovalores de uma matriz.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Decomposição de Jacobi</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                            <p class="card-text">Método iterativo para diagonalizar matrizes simétricas.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Algoritmo de Francis</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-chess-knight"></i>
+                            </div>
+                            <p class="card-text">Variante eficiente do método QR para matrizes de Hessenberg.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métodos Iterativos -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Métodos Iterativos em Álgebra Linear</h3>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Jacobi</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-arrows-alt-h"></i>
+                            </div>
+                            <p class="card-text">Método iterativo clássico para sistemas lineares.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Gauss-Seidel</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-arrows-alt-v"></i>
+                            </div>
+                            <p class="card-text">Melhoria do método de Jacobi com atualizações imediatas.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método SOR</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <p class="card-text">Sobre-relaxação sucessiva para acelerar a convergência.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métodos Diretos -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Métodos Diretos em Sistemas Lineares</h3>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Eliminação Gaussiana</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <p class="card-text">Método fundamental para resolver sistemas lineares.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Decomposição LU</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <p class="card-text">Fatoração da matriz em triangular inferior e superior.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sistemas Não Lineares -->
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-light mb-4">Sistemas Não Lineares</h3>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Newton para Sistemas</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <p class="card-text">Extensão do método de Newton para sistemas de equações.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card card-method">
+                        <div class="card-header">Método de Broyden</div>
+                        <div class="card-body">
+                            <div class="method-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <p class="card-text">Método quasi-Newton que aproxima a matriz Jacobiana.</p>
+                            <a href="#" class="btn btn-numlab">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-calculator me-2"></i>NumLab</h5>
+                    <p>Laboratório de Análise Numérica baseado no livro de Richard L. Burden.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Seções</h5>
+                    <ul class="list-unstyled">
+                        <li>Cálculo e Funções</li>
+                        <li>Álgebra Linear</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> jonas.melo@sempreceub.com</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 NumLab. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

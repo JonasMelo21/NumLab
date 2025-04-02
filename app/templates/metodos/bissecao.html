@@ -1,0 +1,156 @@
+{% extends "metodos/metodosbase.html" %}
+
+{% block title %}Método da Bisseção | NumLab{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
+                <li class="breadcrumb-item"><a href="/#calculus">Cálculo e Funções</a></li>
+                <li class="breadcrumb-item active">Método da Bisseção</li>
+            </ol>
+        </nav>
+        <h1 class="display-4"><i class="fas fa-search me-2"></i> Método da Bisseção</h1>
+        <p class="lead">Algoritmo de busca incremental para encontrar raízes de funções</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Conteúdo Principal -->
+    <div class="col-lg-8">
+        <div class="method-content p-4 rounded mb-4">
+            <h2 class="border-bottom pb-2 mb-3">Introdução</h2>
+            <p>O método da bisseção é um dos algoritmos mais simples e robustos para encontrar raízes de funções contínuas. Ele é garantido para convergir desde que a função mude de sinal no intervalo inicial [a, b].</p>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Teorema Fundamental:</strong> Se f é contínua em [a, b] e f(a) · f(b) < 0, então existe c ∈ (a, b) tal que f(c) = 0.
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Algoritmo</h2>
+            <p>O método segue estes passos:</p>
+            <ol>
+                <li>Escolha um intervalo [a, b] onde f(a) e f(b) têm sinais opostos</li>
+                <li>Calcule o ponto médio c = (a + b)/2</li>
+                <li>Avalie f(c)</li>
+                <li>Se f(c) = 0 (dentro da tolerância), c é a raiz</li>
+                <li>Caso contrário, determine em qual subintervalo [a, c] ou [c, b] a função muda de sinal</li>
+                <li>Repita o processo com o novo intervalo</li>
+            </ol>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Implementação Numérica</h2>
+            <div class="bg-dark p-3 rounded mb-4">
+                <h4><i class="fas fa-code me-2"></i>Pseudocódigo</h4>
+                <pre class="text-light mb-0"><code>function bissecao(f, a, b, tol, max_iter):
+    if f(a)*f(b) >= 0:
+        raise ValueError("A função deve ter sinais opostos em a e b")
+    
+    iter = 0
+    while (b - a)/2 > tol and iter < max_iter:
+        c = (a + b)/2
+        if abs(f(c)) < tol:
+            return c
+        if f(a)*f(c) < 0:
+            b = c
+        else:
+            a = c
+        iter += 1
+    
+    return (a + b)/2</code></pre>
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Análise de Convergência</h2>
+            <p>O método da bisseção tem convergência linear, com taxa de convergência de aproximadamente 0.5 (ou 1 bit de precisão por iteração).</p>
+            <p>O erro após n iterações é limitado por:</p>
+            <p class="bg-dark d-inline-block p-2 rounded">|x<sub>n</sub> - x<sub>*</sub>| ≤ (b - a)/2<sup>n+1</sup></p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <div class="method-sidebar p-4 rounded">
+            <h3 class="border-bottom pb-2 mb-3"><i class="fas fa-lightbulb me-2"></i> Características</h3>
+            <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fas fa-check text-success"></i></span>Convergência garantida</li>
+                <li><span class="fa-li"><i class="fas fa-check text-success"></i></span>Implementação simples</li>
+                <li><span class="fa-li"><i class="fas fa-times text-danger"></i></span>Convergência lenta</li>
+                <li><span class="fa-li"><i class="fas fa-times text-danger"></i></span>Exige mudança de sinal no intervalo</li>
+            </ul>
+
+            <h3 class="border-bottom pb-2 mb-3 mt-4"><i class="fas fa-calculator me-2"></i> Calculadora</h3>
+            <div class="calculator p-3 bg-dark rounded">
+                <div class="mb-3">
+                    <label for="function-input" class="form-label">Função f(x):</label>
+                    <input type="text" class="form-control" id="function-input" value="x^2 - 2">
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col">
+                        <label for="a-input" class="form-label">a:</label>
+                        <input type="number" class="form-control" id="a-input" value="1">
+                    </div>
+                    <div class="col">
+                        <label for="b-input" class="form-label">b:</label>
+                        <input type="number" class="form-control" id="b-input" value="2">
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100" id="calculate-btn">
+                    <i class="fas fa-play me-1"></i> Calcular
+                </button>
+                <div id="results" class="mt-3 text-light"></div>
+            </div>
+
+            <h3 class="border-bottom pb-2 mb-3 mt-4"><i class="fas fa-book me-2"></i> Referência</h3>
+            <div class="reference p-3 bg-dark rounded">
+                <p class="mb-1"><strong>Burden & Faires</strong></p>
+                <p class="small mb-0">Seção 2.1 - O Método da Bissecção</p>
+                <p class="small text-muted">Análise Numérica, 10ª Edição</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('calculate-btn').addEventListener('click', function() {
+    const funcStr = document.getElementById('function-input').value;
+    const a = parseFloat(document.getElementById('a-input').value);
+    const b = parseFloat(document.getElementById('b-input').value);
+    const resultsDiv = document.getElementById('results');
+    
+    try {
+        // Implementação simplificada do método
+        const f = new Function('x', 'return ' + funcStr.replace(/x/g, '(x)'));
+        
+        if (f(a) * f(b) >= 0) {
+            throw new Error("A função deve ter sinais opostos em a e b");
+        }
+        
+        let html = '<h5>Resultados:</h5><ul class="list-unstyled">';
+        let c, iter = 0;
+        const tol = 1e-6;
+        const maxIter = 100;
+        
+        while ((b - a)/2 > tol && iter < maxIter) {
+            iter++;
+            c = (a + b)/2;
+            html += `<li>Iteração ${iter}: c = ${c.toFixed(6)}, f(c) = ${f(c).toFixed(6)}</li>`;
+            
+            if (Math.abs(f(c)) < tol) break;
+            if (f(a) * f(c) < 0) {
+                b = c;
+            } else {
+                a = c;
+            }
+        }
+        
+        html += `</ul><div class="alert alert-success mt-3">Raiz aproximada: ${c.toFixed(6)} (${iter} iterações)</div>`;
+        resultsDiv.innerHTML = html;
+    } catch (error) {
+        resultsDiv.innerHTML = `<div class="alert alert-danger">Erro: ${error.message}</div>`;
+    }
+});
+</script>
+{% endblock %}

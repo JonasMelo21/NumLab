@@ -38,19 +38,22 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card card-login">
                     <div class="card-body">
-                        <form action="login" method="POST">
+                        <form id="form-login" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nome de Usuário ou E-mail</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input type="text" class="form-control" id="usuarioLogin" name="usuarioLogin" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="senhaLogin" name="senhaLogin" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                            
+                            <div class="alert alert-success" id="mensagem-sucesso" style="display: none;"></div>
+                            <div class="alert alert-danger" id="mensagem-erro" style="display: none;"></div>
                         </form>
                         <div class="text-center mt-3">
-                            <p></p><a href="/cadastro" class="text-decoration-none">Não tem uma conta? Cadastre-se</a></p>
+                            <p></p><a href="/api/cadastro" class="text-decoration-none">Não tem uma conta? Cadastre-se</a></p>
                         </div>
                     </div>
                 </div>
