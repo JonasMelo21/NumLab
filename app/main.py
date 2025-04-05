@@ -34,4 +34,3 @@ def get_db():
 @app.get("/",name="index")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
-
