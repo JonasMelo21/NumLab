@@ -24,6 +24,11 @@
     padding: 15px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
+
+ /* Ajustes para alinhamento à direita */
+.navbar-nav {
+    margin-right: 1rem;
+}
   
   .navbar-brand {
     font-weight: bold;
@@ -285,3 +290,34 @@
     overflow-x: auto;
     color: var(--text-light);
   }
+
+
+
+/* Adicione ao seu index.css */
+.alert-info {
+    background-color: rgba(77, 184, 255, 0.1);
+    border-left: 4px solid var(--primary-color);
+    color: var(--text-light);
+    border-radius: 0 8px 8px 0;
+    padding: 1.5rem;
+}
+
+.alert-info .alert-heading {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.alert-info .alert-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.alert-info .alert-link:hover {
+    color: var(--primary-hover);
+}
+
+.alert-info i {
+    color: var(--primary-color);
+}
