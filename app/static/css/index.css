@@ -222,19 +222,20 @@
   }
   
   .footer a {
-    color: var(--text-light);
+    color: var(--text-light) !important;
     text-decoration: none;
     transition: color 0.3s;
   }
   
   .footer a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
   }
   
   .footer hr {
     border-color: rgba(77, 184, 255, 0.2);
     margin: 20px 0;
   }
+
   
   /* ========== RESPONSIVIDADE ========== */
   @media (max-width: 992px) {

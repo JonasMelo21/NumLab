@@ -1,89 +1,284 @@
-/* Estilização Global */
-body {
-    background-color: #1b1f3b; /* Azul-escuro técnico */
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
+/* ===== VARIÁVEIS CSS ===== */
+:root {
+  --primary-color: #4db8ff;       /* Azul claro principal */
+  --primary-dark: #3a98c4;        /* Azul mais escuro */
+  --bg-dark: #1b1f3b;             /* Azul escuro técnico */
+  --bg-darker: #14182e;           /* Azul mais escuro */
+  --bg-card: #2c2f4a;             /* Cinza-azulado */
+  --bg-sidebar: #3a3f6a;          /* Azul mais claro */
+  --text-light: #ffffff;          /* Texto branco */
+  --text-muted: #e0e0e0;          /* Texto cinza claro */
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
 }
 
-/* Navbar */
+/* ===== ESTILOS GERAIS ===== */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ===== NAVBAR ===== */
 .navbar {
-    background-color: #242a4b; /* Azul escuro diferenciado */
+  background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 0;
 }
 
 .navbar-brand {
-    font-weight: bold;
-    color: #4db8ff !important;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600;
+  font-size: 1.5rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
 }
 
-/* Cabeçalho */
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(77, 184, 255, 0.2);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  transition: var(--transition);
+}
+
+.brand-text {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(77, 184, 255, 0.3);
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.nav-link {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  color: var(--text-light) !important;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link i {
+  width: 20px;
+  text-align: center;
+  margin-right: 0.3rem;
+}
+
+.nav-link:hover {
+  background: rgba(77, 184, 255, 0.1);
+  color: var(--primary-color) !important;
+}
+
+/* ===== HERO SECTION ===== */
 .hero {
-    background: linear-gradient(135deg, #1b1f3b 0%, #2c2f4a 100%);
-    padding: 60px 20px;
-    text-align: center;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+  padding: 5rem 0 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(77, 184, 255, 0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+  background-size: cover;
+  opacity: 0.5;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    color: #4db8ff;
-    font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  position: relative;
+  text-shadow: 0 2px 8px rgba(77, 184, 255, 0.3);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    opacity: 0.8;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
 }
 
-/* Formulário de Login */
+/* ===== CARD DE LOGIN ===== */
 .card-login {
-    background-color: #2c2f4a; /* Cinza-azulado */
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(77, 184, 255, 0.2);
+  background-color: var(--bg-card);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 2rem 0;
 }
 
-.card-body {
-    padding: 20px;
+.card-login:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
+.card-login .card-body {
+  padding: 2rem;
+}
+
+/* ===== FORMULÁRIO ===== */
 .form-label {
-    font-weight: bold;
-    color: #ffffff;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .form-control {
-    background-color: #3a3f6a;
-    color: #ffffff;
-    border: 1px solid #4db8ff;
-    border-radius: 8px;
+  background-color: var(--bg-sidebar);
+  color: var(--text-light);
+  border: 1px solid rgba(77, 184, 255, 0.3);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  transition: var(--transition);
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .form-control:focus {
-    border-color: #4db8ff;
-    box-shadow: 0 0 5px rgba(77, 184, 255, 0.5);
+  background-color: var(--bg-sidebar);
+  color: var(--text-light);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(77, 184, 255, 0.25);
+  outline: none;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
 .btn-primary {
-    background-color: #4db8ff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-weight: bold;
+  background-color: var(--primary-color);
+  color: var(--bg-dark);
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 .btn-primary:hover {
-    background-color: #3a98c4;
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(77, 184, 255, 0.3);
 }
 
-/* Link de cadastro */
-.text-center p {
-    font-size: 0.9rem;
-    color: #4db8ff;
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: transparent;
+  width: 100%;
 }
 
-.text-center a {
-    color: #4db8ff;
+.btn-outline-primary:hover {
+  background-color: rgba(77, 184, 255, 0.1);
+  color: var(--primary-color);
+  transform: translateY(-1px);
 }
 
-.text-center a:hover {
-    text-decoration: underline;
+/* ===== TEXTO DE CADASTRO ===== */
+.card-login .text-center.mt-4 p.mb-0 {
+  color: var(--text-light) !important;
+}
+
+/* Mantemos o link "Cadastre-se" como está (com classe text-primary) */
+.card-login .text-center.mt-4 a.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.card-login .text-center.mt-4 a.text-primary:hover {
+  color: var(--primary-dark) !important;
+  text-decoration: underline;
+}
+
+/* ===== ALERTAS ===== */
+.alert {
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0 0;
+  border: none;
+}
+
+.alert-success {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 992px) {
+  .navbar-collapse {
+      padding: 1rem 0;
+  }
+  
+  .nav-link {
+      margin: 0.2rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+      padding: 4rem 0 2rem;
+  }
+  
+  .hero h1 {
+      font-size: 2rem;
+  }
+  
+  .hero p {
+      font-size: 1rem;
+  }
+  
+  .card-login {
+      margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-login .card-body {
+      padding: 1.5rem;
+  }
+  
+  .hero h1 {
+      font-size: 1.8rem;
+  }
 }

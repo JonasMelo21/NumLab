@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NumLab - Login</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', path='css/login.css') }}">
 
     <!-- Favicon do NumLab-->
@@ -13,17 +18,45 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
-
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="/">NumLab</a>
+            <!-- Logo/Marca -->
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <div class="logo-icon me-2">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <span class="brand-text">NumLab</span>
+            </a>
+            
+            <!-- Botão Mobile simplificado -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="me-auto"></div>
+                
+                <!-- Menu simplificado -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>Página Inicial
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/cadastro">
+                            <i class="fas fa-user-plus me-1"></i>Criar Conta
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-
+    
     <!-- Cabeçalho -->
     <header class="hero">
         <div class="container text-center">
@@ -47,13 +80,25 @@
                                 <label for="password" class="form-label">Senha</label>
                                 <input type="password" class="form-control" id="senhaLogin" name="senhaLogin" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
                             
+                            <!-- Botão de Entrar -->
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
+                            
+                            <!-- Botão de Recuperar Senha -->
+                            <div class="d-grid gap-2">
+                                <a href="#recuperar-senha" class="btn btn-outline-primary w-100" data-bs-toggle="modal">
+                                    <i class="fas fa-key me-1"></i>Recuperar Senha
+                                </a>
+                            </div>
+                            
+                            <!-- Alertas -->
                             <div class="alert alert-success" id="mensagem-sucesso" style="display: none;"></div>
                             <div class="alert alert-danger" id="mensagem-erro" style="display: none;"></div>
                         </form>
-                        <div class="text-center mt-3">
-                            <p></p><a href="/api/cadastro" class="text-decoration-none">Não tem uma conta? Cadastre-se</a></p>
+                        
+                        <!-- Link para Cadastro -->
+                        <div class="text-center mt-4">
+                            <p class="mb-0">Não tem uma conta? <a href="/api/cadastro" class="text-primary">Cadastre-se</a></p>
                         </div>
                     </div>
                 </div>
