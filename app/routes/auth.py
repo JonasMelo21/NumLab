@@ -50,7 +50,7 @@ async def add_user(user: UserCreate, db: Session = Depends(get_db)):
         name=user.name,
         email=user.email,
         username=user.username,
-        password=user.password  # Na prática, você deve usar hash!
+        password=user.password  
     )
     db.add(db_user)
     db.commit()

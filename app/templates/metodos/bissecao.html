@@ -18,11 +18,11 @@
 </div>
 
 <div class="row">
-    <!-- Conteúdo Principal -->
+    <!-- Main Content -->
     <div class="col-lg-8">
         <div class="method-content p-4 rounded mb-4">
             <h2 class="border-bottom pb-2 mb-3">Introdução</h2>
-            <p>O método da bisseção é um dos algoritmos mais simples e robustos para encontrar raízes de funções contínuas. Ele é garantido para convergir desde que a função mude de sinal no intervalo inicial [a, b].</p>
+            <p>O método da bisseção é um dos algoritmos mais simples e robustos para encontrar raízes de funções contínuas.</p>
             
             <div class="alert alert-info">
                 <i class="fas fa-info-circle me-2"></i>
@@ -30,7 +30,6 @@
             </div>
 
             <h2 class="border-bottom pb-2 mb-3 mt-5">Algoritmo</h2>
-            <p>O método segue estes passos:</p>
             <ol>
                 <li>Escolha um intervalo [a, b] onde f(a) e f(b) têm sinais opostos</li>
                 <li>Calcule o ponto médio c = (a + b)/2</li>
@@ -60,11 +59,6 @@
     
     return (a + b)/2</code></pre>
             </div>
-
-            <h2 class="border-bottom pb-2 mb-3 mt-5">Análise de Convergência</h2>
-            <p>O método da bisseção tem convergência linear, com taxa de convergência de aproximadamente 0.5 (ou 1 bit de precisão por iteração).</p>
-            <p>O erro após n iterações é limitado por:</p>
-            <p class="bg-dark d-inline-block p-2 rounded">|x<sub>n</sub> - x<sub>*</sub>| ≤ (b - a)/2<sup>n+1</sup></p>
         </div>
     </div>
 
@@ -82,17 +76,27 @@
             <h3 class="border-bottom pb-2 mb-3 mt-4"><i class="fas fa-calculator me-2"></i> Calculadora</h3>
             <div class="calculator p-3 bg-dark rounded">
                 <div class="mb-3">
-                    <label for="function-input" class="form-label">Função f(x):</label>
-                    <input type="text" class="form-control" id="function-input" value="x^2 - 2">
+                    <label for="function-input" class="form-label">Função f(x)</label>
+                    <input type="text" class="form-control" id="function-input" value="x^2 - 2" placeholder="Ex: x^3 - 2x + 1">
                 </div>
                 <div class="row g-2 mb-3">
                     <div class="col">
                         <label for="a-input" class="form-label">a:</label>
-                        <input type="number" class="form-control" id="a-input" value="1">
+                        <input type="number" class="form-control" id="a-input" value="0" step="any">
                     </div>
                     <div class="col">
                         <label for="b-input" class="form-label">b:</label>
-                        <input type="number" class="form-control" id="b-input" value="2">
+                        <input type="number" class="form-control" id="b-input" value="2" step="any">
+                    </div>
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col">
+                        <label for="tol-input" class="form-label">Tolerância:</label>
+                        <input type="number" class="form-control" id="tol-input" value="0.0001" step="any" min="0">
+                    </div>
+                    <div class="col">
+                        <label for="maxiter-input" class="form-label">Máx. Iterações:</label>
+                        <input type="number" class="form-control" id="maxiter-input" value="100" min="1">
                     </div>
                 </div>
                 <button class="btn btn-primary w-100" id="calculate-btn">
@@ -100,57 +104,12 @@
                 </button>
                 <div id="results" class="mt-3 text-light"></div>
             </div>
-
-            <h3 class="border-bottom pb-2 mb-3 mt-4"><i class="fas fa-book me-2"></i> Referência</h3>
-            <div class="reference p-3 bg-dark rounded">
-                <p class="mb-1"><strong>Burden & Faires</strong></p>
-                <p class="small mb-0">Seção 2.1 - O Método da Bissecção</p>
-                <p class="small text-muted">Análise Numérica, 10ª Edição</p>
-            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
-<script>
-document.getElementById('calculate-btn').addEventListener('click', function() {
-    const funcStr = document.getElementById('function-input').value;
-    const a = parseFloat(document.getElementById('a-input').value);
-    const b = parseFloat(document.getElementById('b-input').value);
-    const resultsDiv = document.getElementById('results');
-    
-    try {
-        // Implementação simplificada do método
-        const f = new Function('x', 'return ' + funcStr.replace(/x/g, '(x)'));
-        
-        if (f(a) * f(b) >= 0) {
-            throw new Error("A função deve ter sinais opostos em a e b");
-        }
-        
-        let html = '<h5>Resultados:</h5><ul class="list-unstyled">';
-        let c, iter = 0;
-        const tol = 1e-6;
-        const maxIter = 100;
-        
-        while ((b - a)/2 > tol && iter < maxIter) {
-            iter++;
-            c = (a + b)/2;
-            html += `<li>Iteração ${iter}: c = ${c.toFixed(6)}, f(c) = ${f(c).toFixed(6)}</li>`;
-            
-            if (Math.abs(f(c)) < tol) break;
-            if (f(a) * f(c) < 0) {
-                b = c;
-            } else {
-                a = c;
-            }
-        }
-        
-        html += `</ul><div class="alert alert-success mt-3">Raiz aproximada: ${c.toFixed(6)} (${iter} iterações)</div>`;
-        resultsDiv.innerHTML = html;
-    } catch (error) {
-        resultsDiv.innerHTML = `<div class="alert alert-danger">Erro: ${error.message}</div>`;
-    }
-});
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.js"></script>
+<script src="/static/js/bisecao.js"></script>
 {% endblock %}

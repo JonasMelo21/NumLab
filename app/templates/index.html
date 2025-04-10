@@ -18,10 +18,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        section, div[id] {
+            scroll-margin-top: 80px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar Modernizada -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient fixed-top">
         <div class="container">
             <!-- Logo/Marca com efeito hover -->
             <a class="navbar-brand d-flex align-items-center" href="/">
@@ -48,9 +58,10 @@
                             <i class="fas fa-function me-1"></i>Cálculo e Funções
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="calculusDropdown">
-                            <li><a class="dropdown-item" href="/api/metodos/bissecao">Raízes de Funções</a></li>
-                            <li><a class="dropdown-item" href="#">Diferenciação e Integração</a></li>
-                            <li><a class="dropdown-item" href="#">Equações Diferenciais</a></li>
+                            <li><a class="dropdown-item" href="#raizes">Raízes de Funções</a></li>
+                            <li><a class="dropdown-item" href="#difer-integ">Diferenciação e Integração</a></li>
+                            <li><a class="dropdown-item" href="#edos">Equações Diferenciais</a></li>
+                            <li><a class="dropdown-item" href="#edps">Equações Diferenciais Parciais</a></li>
                         </ul>
                     </li>
 
@@ -59,9 +70,10 @@
                             <i class="fas fa-vector-square me-1"></i>Álgebra Linear
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="algebraDropdown">
-                            <li><a class="dropdown-item" href="#">Autovalores e Autovetores</a></li>
-                            <li><a class="dropdown-item" href="#">Métodos Iterativos</a></li>
-                            <li><a class="dropdown-item" href="#">Métodos Diretos</a></li>
+                            <li><a class="dropdown-item" href="#autovalores">Autovalores e Autovetores</a></li>
+                            <li><a class="dropdown-item" href="#iterativos">Métodos Iterativos</a></li>
+                            <li><a class="dropdown-item" href="#diretos">Métodos Diretos</a></li>
+                            <li><a class="dropdown-item" href="#nao-lineares">Sistemas Não Lineares</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -111,7 +123,7 @@
             <h2 class="section-title"><i class="fas fa-function me-2"></i>Cálculo e Funções</h2>
             
             <!-- Raízes de Funções -->
-            <div class="row mb-4">
+            <div id="raizes" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Cálculo de Raízes de Funções</h3>
                 </div>
@@ -125,7 +137,6 @@
                                 <i class="fas fa-search"></i>
                             </div>
                             <p class="card-text">Método de busca incremental que divide o intervalo ao meio a cada iteração.</p>
-                            <!-- Exemplo para o método da bisseção -->
                             <a href="/api/metodos/bissecao" class="btn btn-numlab">
                                 <i class="fas fa-book-open me-1"></i> Detalhes
                             </a>
@@ -142,7 +153,7 @@
                                 <i class="fas fa-search"></i>
                             </div>
                             <p class="card-text">Utiliza a derivada da função para convergir rapidamente para a raiz.</p>
-                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                            <a href="/api/metodos/newton" class="btn btn-numlab">
                                 <i class="fas fa-book-open me-1"></i> Detalhes
                             </a>
                         </div>
@@ -158,13 +169,12 @@
                                 <i class="fas fa-search"></i>
                             </div>
                             <p class="card-text">Versão aproximada do método de Newton que não requer o cálculo da derivada.</p>
-                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                            <a href="/api/metodos/secante" class="btn btn-numlab">
                                 <i class="fas fa-book-open me-1"></i> Detalhes
                             </a>
                         </div>
                     </div>
                 </div>
-                
                 
                 <!-- Card Método de Muller-->
                 <div class="col-md-6 col-lg-3 mb-4">
@@ -175,16 +185,16 @@
                                 <i class="fas fa-search"></i>
                             </div>
                             <p class="card-text">Generalização do método da secante que usa uma aproximação quadrática, eficiente para raízes complexas.</p>
-                            <a href="metodos/bissecao.html" class="btn btn-numlab">
+                            <a href="/api/metodos/muller" class="btn btn-numlab">
                                 <i class="fas fa-book-open me-1"></i> Detalhes
                             </a>
                         </div>
                     </div>
                 </div>
-                
+            </div>
             
             <!-- Diferenciação e Integração Numérica -->
-            <div class="row mb-4">
+            <div id="difer-integ" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Diferenciação e Integração Numérica</h3>
                 </div>
@@ -230,7 +240,7 @@
             </div>
             
             <!-- Equações Diferenciais -->
-            <div class="row mb-4">
+            <div id="edos" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Equações Diferenciais</h3>
                 </div>
@@ -263,7 +273,7 @@
             </div>
             
             <!-- Equações Diferenciais Parciais -->
-            <div class="row">
+            <div id="edps" class="row">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Equações Diferenciais Parciais</h3>
                 </div>
@@ -314,7 +324,7 @@
             <h2 class="section-title"><i class="fas fa-vector-square me-2"></i>Álgebra Linear Numérica</h2>
             
             <!-- Autovalores e Autovetores -->
-            <div class="row mb-4">
+            <div id="autovalores" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Autovalores e Autovetores</h3>
                 </div>
@@ -373,7 +383,7 @@
             </div>
             
             <!-- Métodos Iterativos -->
-            <div class="row mb-4">
+            <div id="iterativos" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Métodos Iterativos em Álgebra Linear</h3>
                 </div>
@@ -419,7 +429,7 @@
             </div>
             
             <!-- Métodos Diretos -->
-            <div class="row mb-4">
+            <div id="diretos" class="row mb-4">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Métodos Diretos em Sistemas Lineares</h3>
                 </div>
@@ -452,7 +462,7 @@
             </div>
             
             <!-- Sistemas Não Lineares -->
-            <div class="row">
+            <div id="nao-lineares" class="row">
                 <div class="col-12">
                     <h3 class="text-light mb-4">Sistemas Não Lineares</h3>
                 </div>
