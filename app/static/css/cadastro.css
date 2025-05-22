@@ -218,8 +218,9 @@ body {
 }
 
 .alert-success {
-  background-color: rgba(40, 167, 69, 0.2);
-  color: #28a745;
+  background-color: rgba(72, 219, 113, 0.3); /* Verde mais claro com transparência */
+  color: #48db71; /* Texto em verde mais claro */
+  border-left: 4px solid #48db71; /* Borda lateral para destaque */
 }
 
 .alert-danger {
