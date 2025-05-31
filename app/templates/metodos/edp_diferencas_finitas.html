@@ -1,0 +1,150 @@
+{% extends "metodos/metodosbase.html" %}
+
+{% block title %}Diferenças Finitas para EDPs | NumLab{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
+                <li class="breadcrumb-item"><a href="/#partial-differential">EDPs</a></li>
+                <li class="breadcrumb-item active">Diferenças Finitas</li>
+            </ol>
+        </nav>
+        <h1 class="display-4"><i class="fas fa-border-all me-2"></i> Método das Diferenças Finitas para EDPs</h1>
+        <p class="lead">Discretização de equações diferenciais parciais usando aproximações por diferenças finitas</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Main Content -->
+    <div class="col-lg-8">
+        <div class="method-content p-4 rounded mb-4">
+            <h2 class="border-bottom pb-2 mb-3">Introdução</h2>
+            <p>O método das diferenças finitas é uma técnica numérica para resolver equações diferenciais parciais (EDPs) substituindo as derivadas por aproximações discretas.</p>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Aplicações:</strong> Equação do calor, equação de onda, equação de Laplace, mecânica dos fluidos, transferência de calor, etc.
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Esquemas de Discretização</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Derivada</th>
+                            <th>Diferença Progressiva</th>
+                            <th>Diferença Central</th>
+                            <th>Diferença Regressiva</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primeira ∂u/∂x</td>
+                            <td>(u<sub>i+1,j</sub> - u<sub>i,j</sub>)/Δx</td>
+                            <td>(u<sub>i+1,j</sub> - u<sub>i-1,j</sub>)/(2Δx)</td>
+                            <td>(u<sub>i,j</sub> - u<sub>i-1,j</sub>)/Δx</td>
+                        </tr>
+                        <tr>
+                            <td>Segunda ∂²u/∂x²</td>
+                            <td colspan="3" class="text-center">(u<sub>i+1,j</sub> - 2u<sub>i,j</sub> + u<sub>i-1,j</sub>)/Δx²</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Exemplo: Equação do Calor 1D</h2>
+            <p>Para a equação do calor unidimensional:</p>
+            <p class="text-center">∂u/∂t = α ∂²u/∂x²</p>
+            
+            <h4 class="mt-4">Esquema Explícito</h4>
+            <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>u[i][n+1] = u[i][n] + α*Δt/Δx² * (u[i+1][n] - 2u[i][n] + u[i-1][n])</code></pre>
+            </div>
+            
+            <h4 class="mt-4">Esquema Implícito</h4>
+            <div class="bg-dark p-3 rounded mb-4">
+                <pre class="text-light mb-0"><code>-r*u[i-1][n+1] + (1+2r)*u[i][n+1] - r*u[i+1][n+1] = u[i][n]
+onde r = α*Δt/Δx²</code></pre>
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Estabilidade</h2>
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Condição CFL:</strong> Para o esquema explícito, a condição de estabilidade é:
+                <p class="text-center">αΔt/Δx² ≤ 1/2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <div class="method-sidebar p-4 rounded">
+            <h3 class="border-bottom pb-2 mb-3"><i class="fas fa-calculator me-2"></i> Simulador</h3>
+            
+            <div class="mb-3">
+                <label for="equation-type" class="form-label">Tipo de EDP:</label>
+                <select class="form-select" id="equation-type">
+                    <option value="heat">Equação do Calor (1D)</option>
+                    <option value="wave">Equação da Onda (1D)</option>
+                    <option value="laplace">Equação de Laplace (2D)</option>
+                </select>
+            </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col">
+                    <label for="alpha-input" class="form-label">α (coeficiente):</label>
+                    <input type="number" class="form-control" id="alpha-input" value="0.1" step="0.01" min="0">
+                </div>
+                <div class="col">
+                    <label for="dx-input" class="form-label">Δx (espaço):</label>
+                    <input type="number" class="form-control" id="dx-input" value="0.1" step="0.01" min="0.01">
+                </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col">
+                    <label for="dt-input" class="form-label">Δt (tempo):</label>
+                    <input type="number" class="form-control" id="dt-input" value="0.01" step="0.001" min="0">
+                </div>
+                <div class="col">
+                    <label for="steps-input" class="form-label">Passos:</label>
+                    <input type="number" class="form-control" id="steps-input" value="100" min="1">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="initial-condition" class="form-label">Condição Inicial:</label>
+                <select class="form-select" id="initial-condition">
+                    <option value="pulse">Pulso no Centro</option>
+                    <option value="sin">Seno</option>
+                    <option value="gaussian">Gaussiana</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary w-100 mb-3" id="calculate-btn">
+                <i class="fas fa-play me-1"></i> Simular
+            </button>
+
+            <div id="results" class="mt-3">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Configure os parâmetros e clique em Simular.
+                </div>
+            </div>
+
+            <div id="stability-info" class="alert alert-warning mt-3 d-none">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="stability-message"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+<script src="/static/js/edp_diferencas_finitas.js"></script>
+{% endblock %}

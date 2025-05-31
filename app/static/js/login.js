@@ -1,59 +1,57 @@
 document.getElementById("form-login").addEventListener("submit", async function(event) {
-    event.preventDefault(); // This prevents the default form submission
+    event.preventDefault();
 
-    // 1. Coletar dados do formulário - usando os nomes EXATOS do seu modelo Pydantic
+    const form = event.target;
     const formData = {
-        usuarioLogin: document.getElementById("usuarioLogin").value.trim(), // Must match UserLogin model
-        senhaLogin: document.getElementById("senhaLogin").value.trim()     // Must match UserLogin model
+        usuarioLogin: form.usuarioLogin.value.trim(),
+        senhaLogin: form.senhaLogin.value.trim()
     };
 
-    // 2. Elementos de mensagem
-    const mensagemSucesso = document.getElementById("mensagem-sucesso");
     const mensagemErro = document.getElementById("mensagem-erro");
-    
-    // 3. Resetar mensagens
-    mensagemSucesso.style.display = "none";
-    mensagemErro.style.display = "none";
+    const senhaInput = document.getElementById("senhaLogin");
+
+    // Resetar estados
+    mensagemErro.classList.add("d-none");
+    senhaInput.classList.remove("is-invalid");
 
     try {
-        // 4. Enviar requisição como JSON
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: { 
-                'Content-Type': 'application/json', // Important for JSON
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify(formData),
             credentials: 'include'
         });
 
-        // 5. Processar resposta - handle redirect if response is redirect
-        if (response.redirected) {
-            window.location.href = response.url;
+        const data = await response.json();
+
+        if (!response.ok || data.status === "error") {
+            if (data.error_type === "wrong_password") {
+                mensagemErro.textContent = "Senha incorreta";
+                senhaInput.classList.add("is-invalid");
+                senhaInput.focus();
+            } else {
+                mensagemErro.textContent = data.detail || "Erro ao fazer login";
+            }
+            mensagemErro.classList.remove("d-none");
             return;
         }
 
-        const data = await response.json();
-        
-        if (response.ok) {
-            // Se tiver mensagem de sucesso (opcional)
-            if (data.message) {
-                mensagemSucesso.textContent = data.message;
-                mensagemSucesso.style.display = "block";
-            }
-            // Redirecionar após 1 segundo (opcional)
-            setTimeout(() => {
-                window.location.href = "/api/home";
-            }, 1000);
-        } else {
-            // Tratar erros da API
-            mensagemErro.textContent = data.detail || "Credenciais inválidas";
-            mensagemErro.style.display = "block";
+        // Redirecionamento após login bem-sucedido
+        if (data.redirect) {
+            window.location.href = data.redirect;
         }
-        
+
     } catch (error) {
-        console.error("Erro:", error);
+        console.error("Erro na requisição:", error);
         mensagemErro.textContent = "Erro ao conectar com o servidor";
-        mensagemErro.style.display = "block";
+        mensagemErro.classList.remove("d-none");
     }
+});
+
+// Limpa o erro quando o usuário começa a digitar
+document.getElementById("senhaLogin").addEventListener("input", function() {
+    this.classList.remove("is-invalid");
 });

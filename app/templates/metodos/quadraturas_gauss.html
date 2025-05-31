@@ -1,0 +1,174 @@
+{% extends "metodos/metodosbase.html" %}
+
+{% block title %}Quadraturas de Gauss | NumLab{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
+                <li class="breadcrumb-item"><a href="/#integration">Integração Numérica</a></li>
+                <li class="breadcrumb-item active">Quadraturas de Gauss</li>
+            </ol>
+        </nav>
+        <h1 class="display-4"><i class="fas fa-star me-2"></i> Quadraturas de Gauss</h1>
+        <p class="lead">Método de integração numérica de alta precisão usando pontos e pesos otimizados</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Main Content -->
+    <div class="col-lg-8">
+        <div class="method-content p-4 rounded mb-4">
+            <h2 class="border-bottom pb-2 mb-3">Introdução</h2>
+            <p>As quadraturas de Gauss são métodos de integração numérica que selecionam pontos de avaliação e pesos de forma ótima para maximizar a precisão.</p>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Vantagem:</strong> Para n pontos, o método é exato para polinômios de grau até 2n-1, muito superior à regra do trapézio ou Simpson.
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Fórmula Matemática</h2>
+            <p>A quadratura de Gauss aproxima a integral como:</p>
+            
+            <div class="text-center my-4">
+                <p>\[ \int_{-1}^{1} f(x) \,dx \approx \sum_{i=1}^n w_i f(x_i) \]</p>
+                <p>Para um intervalo geral [a, b], faz-se uma mudança de variáveis:</p>
+                <p>\[ \int_{a}^{b} f(x) \,dx \approx \frac{b-a}{2} \sum_{i=1}^n w_i f\left(\frac{b-a}{2}x_i + \frac{a+b}{2}\right) \]</p>
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Pontos e Pesos de Gauss-Legendre</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>n</th>
+                            <th>Pontos (xᵢ)</th>
+                            <th>Pesos (wᵢ)</th>
+                            <th>Grau Exato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>±0.5773502692</td>
+                            <td>1</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>0, ±0.7745966692</td>
+                            <td>0.888..., 0.555...</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>±0.3399810436, ±0.8611363116</td>
+                            <td>0.652145..., 0.347855...</td>
+                            <td>7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Algoritmo</h2>
+            <ol>
+                <li>Escolha o número de pontos n (grau da quadratura)</li>
+                <li>Obtenha os pontos xᵢ e pesos wᵢ da quadratura de Gauss-Legendre para o intervalo [-1, 1]</li>
+                <li>Transforme os pontos para o intervalo [a, b] desejado</li>
+                <li>Calcule a soma ponderada dos valores da função nos pontos transformados</li>
+                <li>Multiplique pelo fator de escala (b-a)/2</li>
+            </ol>
+
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Implementação Numérica</h2>
+            <div class="bg-dark p-3 rounded mb-4">
+                <h4><i class="fas fa-code me-2"></i>Pseudocódigo</h4>
+                <pre class="text-light mb-0"><code>function gaussQuad(f, a, b, n):
+    // Obter pontos e pesos pré-computados para n pontos
+    points, weights = getGaussLegendrePointsWeights(n)
+    
+    // Mudança de variável para o intervalo [a,b]
+    sum = 0
+    for i from 1 to n:
+        x_transformed = 0.5*(b-a)*points[i] + 0.5*(a+b)
+        sum += weights[i] * f(x_transformed)
+    
+    integral = 0.5*(b-a) * sum
+    return integral</code></pre>
+            </div>
+            
+            <h2 class="border-bottom pb-2 mb-3 mt-5">Comparação com Outros Métodos</h2>
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Diferenças:</strong>
+                <ul class="mt-2">
+                    <li>Precisão muito maior para o mesmo número de avaliações de função</li>
+                    <li>Pontos de avaliação não igualmente espaçados</li>
+                    <li>Pesos diferentes para cada ponto</li>
+                    <li>Implementação mais complexa (requer tabela de pontos/pesos ou cálculo dos mesmos)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <div class="method-sidebar p-4 rounded">
+            <h3 class="border-bottom pb-2 mb-3"><i class="fas fa-lightbulb me-2"></i> Características</h3>
+            <ul class="fa-ul">
+                <li><span class="fa-li"><i class="fas fa-check text-success"></i></span>Alta precisão com poucos pontos</li>
+                <li><span class="fa-li"><i class="fas fa-check text-success"></i></span>Exato para polinômios até grau 2n-1</li>
+                <li><span class="fa-li"><i class="fas fa-check text-success"></i></span>Ótimo para integrais com limites finitos</li>
+                <li><span class="fa-li"><i class="fas fa-times text-danger"></i></span>Não adaptativo (número de pontos fixo)</li>
+            </ul>
+
+            <h3 class="border-bottom pb-2 mb-3 mt-4"><i class="fas fa-calculator me-2"></i> Calculadora</h3>
+            <div class="calculator p-3 bg-dark rounded">
+                <div class="mb-3">
+                    <label for="function-input" class="form-label">Função f(x)</label>
+                    <input type="text" class="form-control" id="function-input" value="exp(-x^2)" placeholder="Ex: x^3 + sin(x)">
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col">
+                        <label for="a-input" class="form-label">Limite inferior (a):</label>
+                        <input type="number" class="form-control" id="a-input" value="-1" step="any">
+                    </div>
+                    <div class="col">
+                        <label for="b-input" class="form-label">Limite superior (b):</label>
+                        <input type="number" class="form-control" id="b-input" value="1" step="any">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="n-input" class="form-label">Número de pontos (n):</label>
+                    <select class="form-select" id="n-input">
+                        <option value="1">1 ponto (grau 1)</option>
+                        <option value="2" selected>2 pontos (grau 3)</option>
+                        <option value="3">3 pontos (grau 5)</option>
+                        <option value="4">4 pontos (grau 7)</option>
+                        <option value="5">5 pontos (grau 9)</option>
+                        <option value="6">6 pontos (grau 11)</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary w-100" id="calculate-btn">
+                    <i class="fas fa-play me-1"></i> Calcular Integral
+                </button>
+                <div id="results" class="mt-3 text-light"></div>
+                <div id="points-info" class="mt-3 text-light"></div>
+                <div id="comparison-results" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.js"></script>
+<script src="/static/js/quadraturas_gauss.js"></script>
+{% endblock %}

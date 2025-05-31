@@ -1,0 +1,76 @@
+:root {
+    --bg-dark: #1b1f3b;
+    --bg-navbar: #242a4b;
+    --bg-card: #2c2f4a;
+    --bg-sidebar: #3a3f6a;
+    --primary-color: #4db8ff;
+    --primary-hover: #3a98c4;
+    --text-light: #ffffff;
+    --text-muted: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    padding-top: 80px;
+}
+
+.navbar {
+    background-color: var(--bg-navbar);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.method-content, .method-sidebar {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+}
+
+.method-sidebar {
+    background-color: var(--bg-sidebar);
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+.alert-info {
+    background-color: rgba(77, 184, 255, 0.1);
+    border-left: 4px solid var(--primary-color);
+    color: var(--text-light);
+}
+
+.calculator {
+    background-color: var(--bg-navbar);
+    border-radius: 8px;
+}
+
+.table-dark {
+    background-color: var(--bg-card);
+}
+
+.breadcrumb {
+    background-color: var(--bg-card);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+.form-control {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--bg-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}

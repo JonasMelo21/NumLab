@@ -15,9 +15,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{url_for('static',path='img/faviconNumLab.png')}}"> 
     <link rel="shortcut icon" href="{{url_for('static',path='img/faviconNumLab.png')}}" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static',path='img/faviconNumLab.png')}}"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static',path='img/faviconNumLab.png')}}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static',path='img/faviconNumLab.png')}}"/>
 </head>
 <body>
 
@@ -79,21 +79,13 @@
                             </div>
 
                             <!-- Mensagens do servidor -->
-                            {% if error %}
-                            <div class="alert alert-danger mt-3 mb-2" id="mensagem-erro">
-                                {{ error }}
+                            <div id="mensagem-erro" class="alert alert-danger mt-3 mb-2 {{ 'd-none' if not error else '' }}">
+                                {{ error or '' }}
                             </div>
-                            {% else %}
-                                <div class="alert alert-danger mt-3 mb-2 d-none" id="mensagem-erro"></div>
-                            {% endif %}
 
-                            {% if success %}
-                                <div class="alert alert-success mt-3 mb-2" id="mensagem-sucesso">
-                                    {{ success }}
-                                </div>
-                            {% else %}
-                                <div class="alert alert-success mt-3 mb-2 d-none" id="mensagem-sucesso"></div>
-                            {% endif %}
+                            <div id="mensagem-sucesso" class="alert alert-success mt-3 mb-2 {{ 'd-none' if not success else '' }}">
+                                {{ success or '' }}
+                            </div>
                         </form>
 
                         <div class="text-center mt-4">
