@@ -1,32 +1,23 @@
 import type { ComponentProps, PropsWithChildren } from "react";
 
-/* util simples para concatenar classes */
 function cn(...cls: (string | undefined | false)[]) {
   return cls.filter(Boolean).join(" ");
 }
 
 export function Card({ className, children, ...props }: PropsWithChildren<ComponentProps<"div">>) {
   return (
-    <div
-      className={cn(
-        "rounded-xl border border-gray-200 bg-white shadow-sm",
-        className
-      )}
-      {...props}
-    >
+    <div className={cn("rounded-2xl border bg-white shadow-sm", className)} {...props}>
       {children}
     </div>
   );
 }
-
 export function CardHeader({ className, children, ...props }: PropsWithChildren<ComponentProps<"div">>) {
   return (
-    <div className={cn("p-5", className)} {...props}>
+    <div className={cn("p-6", className)} {...props}>
       {children}
     </div>
   );
 }
-
 export function CardTitle({ className, children, ...props }: PropsWithChildren<ComponentProps<"h3">>) {
   return (
     <h3 className={cn("text-lg font-semibold tracking-tight", className)} {...props}>
@@ -34,10 +25,9 @@ export function CardTitle({ className, children, ...props }: PropsWithChildren<C
     </h3>
   );
 }
-
 export function CardContent({ className, children, ...props }: PropsWithChildren<ComponentProps<"div">>) {
   return (
-    <div className={cn("p-5 pt-0 text-sm text-gray-600 leading-relaxed", className)} {...props}>
+    <div className={cn("px-6 pb-6 pt-0", className)} {...props}>
       {children}
     </div>
   );
