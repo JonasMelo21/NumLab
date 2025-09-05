@@ -1,37 +1,93 @@
 
 ```
 NumLab
+├─ README.md
 ├─ backend
 │  ├─ app
-│  │  ├─ api
-│  │  │  └─ __init__.py
-│  │  ├─ main.py
-│  │  ├─ services
-│  │  │  └─ rootFinding
-│  │  │     ├─ bisection.py
-│  │  │     ├─ muller.py
-│  │  │     ├─ newton.py
-│  │  │     ├─ secant.py
-│  │  │     ├─ __init__.py
-│  │  │     └─ __pycache__
-│  │  │        ├─ bisection.cpython-313.pyc
-│  │  │        ├─ muller.cpython-313.pyc
-│  │  │        ├─ newton.cpython-313.pyc
-│  │  │        ├─ secant.cpython-313.pyc
-│  │  │        └─ __init__.cpython-313.pyc
 │  │  ├─ __init__.py
-│  │  └─ __pycache__
-│  │     ├─ main.cpython-313.pyc
-│  │     └─ __init__.cpython-313.pyc
+│  │  ├─ __pycache__
+│  │  │  ├─ __init__.cpython-313.pyc
+│  │  │  └─ main.cpython-313.pyc
+│  │  ├─ api
+│  │  │  ├─ __init__.py
+│  │  │  ├─ __pycache__
+│  │  │  │  └─ __init__.cpython-313.pyc
+│  │  │  ├─ routers
+│  │  │  │  ├─ __init__.py
+│  │  │  │  ├─ __pycache__
+│  │  │  │  │  ├─ __init__.cpython-313.pyc
+│  │  │  │  │  ├─ animations.cpython-313.pyc
+│  │  │  │  │  └─ root_finding.cpython-313.pyc
+│  │  │  │  ├─ animations.py
+│  │  │  │  └─ root_finding.py
+│  │  │  └─ schemas
+│  │  │     ├─ __init__.py
+│  │  │     ├─ __pycache__
+│  │  │     │  ├─ __init__.cpython-313.pyc
+│  │  │     │  ├─ animations.cpython-313.pyc
+│  │  │     │  └─ root_finding.cpython-313.pyc
+│  │  │     ├─ animations.py
+│  │  │     └─ root_finding.py
+│  │  ├─ main.py
+│  │  ├─ media
+│  │  │  └─ animations
+│  │  └─ services
+│  │     ├─ animations
+│  │     │  ├─ __init__.py
+│  │     │  ├─ __pycache__
+│  │     │  │  ├─ __init__.cpython-313.pyc
+│  │     │  │  ├─ newton_anim.cpython-313.pyc
+│  │     │  │  └─ utils.cpython-313.pyc
+│  │     │  ├─ newton_anim.py
+│  │     │  └─ utils.py
+│  │     └─ rootFinding
+│  │        ├─ __init__.py
+│  │        ├─ __pycache__
+│  │        │  ├─ __init__.cpython-313.pyc
+│  │        │  ├─ bisection.cpython-313.pyc
+│  │        │  ├─ muller.cpython-313.pyc
+│  │        │  ├─ newton.cpython-313.pyc
+│  │        │  └─ secant.cpython-313.pyc
+│  │        ├─ bisection.py
+│  │        ├─ muller.py
+│  │        ├─ newton.py
+│  │        └─ secant.py
+│  ├─ media
+│  │  ├─ animations
+│  │  ├─ images
+│  │  └─ videos
+│  │     └─ 1080p60
+│  │        ├─ NewtonScene.mp4
+│  │        └─ partial_movie_files
+│  │           └─ NewtonScene
+│  │              ├─ 2852726489_1121873893_288049839.mp4
+│  │              ├─ 2852726489_1330478031_2745993707.mp4
+│  │              ├─ 2852726489_1503166646_723781143.mp4
+│  │              ├─ 2852726489_1558848115_3530104714.mp4
+│  │              ├─ 2852726489_2166783919_2258751637.mp4
+│  │              ├─ 2852726489_2266878640_2983048214.mp4
+│  │              ├─ 2852726489_2297410101_883564186.mp4
+│  │              ├─ 2852726489_2572222260_3001179627.mp4
+│  │              ├─ 2852726489_2579215482_3822852380.mp4
+│  │              ├─ 2852726489_2698258729_4211838674.mp4
+│  │              ├─ 2852726489_2949676138_3592216945.mp4
+│  │              ├─ 2852726489_3117156166_2316298733.mp4
+│  │              ├─ 2852726489_3392407244_3262042695.mp4
+│  │              ├─ 2852726489_3501512112_3972621471.mp4
+│  │              ├─ 2852726489_3516965167_1686669346.mp4
+│  │              ├─ 2852726489_3593470018_2842492926.mp4
+│  │              ├─ 2852726489_3659241139_2191441477.mp4
+│  │              ├─ 2852726489_421143107_364078340.mp4
+│  │              ├─ 2852726489_542898307_2021009981.mp4
+│  │              ├─ 2852726489_609459381_2407112736.mp4
+│  │              ├─ 2852726489_671919876_375626774.mp4
+│  │              ├─ 2852726489_807188262_1605401971.mp4
+│  │              ├─ 3977891868_2807086086_223132457.mp4
+│  │              └─ partial_movie_file_list.txt
 │  └─ requirements.txt
 ├─ frontend
 │  ├─ .env.development
-│  ├─ dist
-│  │  ├─ assets
-│  │  │  ├─ index-DIRvBxOo.css
-│  │  │  └─ index-DKyXWju7.js
-│  │  ├─ faviconNumLab.png
-│  │  └─ index.html
+│  ├─ README.md
 │  ├─ eslint.config.js
 │  ├─ index.html
 │  ├─ package-lock.json
@@ -39,16 +95,15 @@ NumLab
 │  ├─ postcss.config.cjs
 │  ├─ public
 │  │  └─ faviconNumLab.png
-│  ├─ README.md
 │  ├─ setup_rf_arch.sh
 │  ├─ src
+│  │  ├─ App.css
+│  │  ├─ App.tsx
 │  │  ├─ app
 │  │  │  ├─ AppShell.tsx
 │  │  │  ├─ i18n
 │  │  │  │  └─ LangProvider.tsx
 │  │  │  └─ router.tsx
-│  │  ├─ App.css
-│  │  ├─ App.tsx
 │  │  ├─ assets
 │  │  │  └─ react.svg
 │  │  ├─ components
@@ -68,23 +123,25 @@ NumLab
 │  │  ├─ layouts
 │  │  │  └─ SiteLayout.tsx
 │  │  ├─ lib
+│  │  │  ├─ animations.ts
 │  │  │  └─ api.ts
 │  │  ├─ main.tsx
 │  │  ├─ pages
 │  │  │  ├─ home
-│  │  │  │  ├─ components
-│  │  │  │  │  ├─ HomeHero.tsx
-│  │  │  │  │  └─ MainContent.tsx
-│  │  │  │  └─ HomePage.tsx
+│  │  │  │  ├─ HomePage.tsx
+│  │  │  │  └─ components
+│  │  │  │     ├─ HomeHero.tsx
+│  │  │  │     └─ MainContent.tsx
 │  │  │  └─ root-finding
-│  │  │     ├─ components
-│  │  │     │  ├─ ComparisonSection.tsx
-│  │  │     │  ├─ MathKeyboard.tsx
-│  │  │     │  ├─ MethodContent.tsx
-│  │  │     │  ├─ MethodSelector.tsx
-│  │  │     │  ├─ RootFindingContent.tsx
-│  │  │     │  └─ RootFindingHero.tsx
-│  │  │     └─ RootFindingPage.tsx
+│  │  │     ├─ RootFindingPage.tsx
+│  │  │     └─ components
+│  │  │        ├─ ComparisonSection.tsx
+│  │  │        ├─ MathKeyboard.tsx
+│  │  │        ├─ MethodContent.tsx
+│  │  │        ├─ MethodSelector.tsx
+│  │  │        ├─ NewtonAnimation.tsx
+│  │  │        ├─ RootFindingContent.tsx
+│  │  │        └─ RootFindingHero.tsx
 │  │  ├─ styles
 │  │  │  ├─ components.css
 │  │  │  └─ global.css
@@ -93,7 +150,37 @@ NumLab
 │  ├─ tsconfig.json
 │  ├─ tsconfig.node.json
 │  └─ vite.config.ts
-├─ README.md
+├─ media
+│  ├─ images
+│  └─ videos
+│     └─ 1080p60
+│        ├─ NewtonScene.mp4
+│        └─ partial_movie_files
+│           └─ NewtonScene
+│              ├─ 2852726489_1121873893_288049839.mp4
+│              ├─ 2852726489_1330478031_1835046787.mp4
+│              ├─ 2852726489_1503166646_723781143.mp4
+│              ├─ 2852726489_1558848115_1073655310.mp4
+│              ├─ 2852726489_2166783919_1545352026.mp4
+│              ├─ 2852726489_2266878640_2983048214.mp4
+│              ├─ 2852726489_2297410101_126772569.mp4
+│              ├─ 2852726489_2572222260_3001179627.mp4
+│              ├─ 2852726489_2579215482_3822852380.mp4
+│              ├─ 2852726489_2698258729_4211838674.mp4
+│              ├─ 2852726489_2949676138_3592216945.mp4
+│              ├─ 2852726489_3117156166_2316298733.mp4
+│              ├─ 2852726489_3392407244_3262042695.mp4
+│              ├─ 2852726489_3501512112_3972621471.mp4
+│              ├─ 2852726489_3516965167_3269735287.mp4
+│              ├─ 2852726489_3593470018_2842492926.mp4
+│              ├─ 2852726489_3659241139_2191441477.mp4
+│              ├─ 2852726489_421143107_364078340.mp4
+│              ├─ 2852726489_542898307_2021009981.mp4
+│              ├─ 2852726489_609459381_2407112736.mp4
+│              ├─ 2852726489_671919876_375626774.mp4
+│              ├─ 2852726489_807188262_1605401971.mp4
+│              ├─ 3977891868_2807086086_223132457.mp4
+│              └─ partial_movie_file_list.txt
 ├─ run_linux.sh
 └─ run_windows.sh
 

@@ -8,13 +8,13 @@ export default function HomeHero() {
       title: "NumLab – Laboratory of Numerical Analysis",
       blurb:
         "NumLab is a web platform designed to help students and enthusiasts visualize and compare numerical analysis algorithms through interactive simulations. It aims to support learning by bridging mathematical theory and computational practice, making complex methods easier to understand.",
-      github: "GitHub",
+      github: "Owner's GitHub",
     },
     pt: {
       title: "NumLab – Laboratório de Análise Numérica",
       blurb:
         "O NumLab é uma plataforma web para ajudar estudantes e entusiastas a visualizar e comparar algoritmos de análise numérica por meio de simulações interativas. A ideia é aproximar teoria matemática e prática computacional, tornando métodos complexos mais fáceis de entender.",
-      github: "GitHub",
+      github: "GitHub do Responsável pelo projeto",
     },
   }[lang];
 
