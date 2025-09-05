@@ -5,6 +5,7 @@ import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 import { runNewton, runSecant, runBisection, runMuller, type IterationRow } from "../../../lib/api";
 import { useLang } from "../../../app/i18n/LangProvider";
+import NewtonAnimation from "./NewtonAnimation";
 
 type Method = "newton" | "secant" | "bisection" | "muller";
 
@@ -296,44 +297,14 @@ export default function MethodContent({
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2 text-center">{t.iterResults}</h4>
-          <div className="rounded border overflow-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>{t.iter}</TableHead>
-                  <TableHead className="text-right">{t.x}</TableHead>
-                  <TableHead className="text-right">{t.fx_col}</TableHead>
-                  <TableHead className="text-right">{t.dx}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {rows && rows.length > 0 ? (
-                  rows.map((r) => (
-                    <TableRow key={r.iter}>
-                      <TableCell>{r.iter}</TableCell>
-                      <TableCell className="text-right">{formatNum(r.x)}</TableCell>
-                      <TableCell className="text-right">{formatNum(r.fx)}</TableCell>
-                      <TableCell className="text-right">{r.dx == null ? "—" : formatNum(r.dx)}</TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <td colSpan={4} className="px-4 py-3 text-center text-slate-500">
-                      {loading ? t.computing : "—"}
-                    </td>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </div>
-
-        <div>
           <h4 className="font-semibold mb-2 text-center">{t.viz}</h4>
-          <div className="h-64 border-2 border-dashed rounded-lg flex items-center justify-center text-slate-500">
-            {t.graphPh}
-          </div>
+          {method === "newton" ? (
+            <NewtonAnimation />
+          ) : (
+            <div className="h-64 border-2 border-dashed rounded-lg flex items-center justify-center text-slate-500">
+              {t.graphPh}
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
