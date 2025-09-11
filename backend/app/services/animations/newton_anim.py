@@ -109,6 +109,17 @@ def _expand_range_to_include(
         x_max = mid + min_span / 2
     return (float(x_min), float(x_max), step)
 
+def _symmetric_range_from_x0(x0: float, step: float, extra: float = 5.0) -> Tuple[float, float, float]:
+    """
+    Cria um range simétrico em torno de 0 com raio R = |x0| + extra.
+    Ex.: x0 = -6 -> R = 11, intervalo = (-11, 11, step)
+    """
+    R = float(abs(x0) + extra)
+    # Evita R muito pequeno
+    if R < 5.0:
+        R = 5.0
+    return (-R, R, step)
+
 class NewtonScene(Scene):
     data: dict  # ajuda de tipagem
 
@@ -124,7 +135,6 @@ class NewtonScene(Scene):
 
         # ---------- Título ----------
         title = MathTex(rf"f(x) = {function_tex}", font_size=52)
-        # sobe pro topo com margem
         title.to_edge(UP, buff=0.6)
 
         # ---------- Eixos ----------
@@ -141,24 +151,15 @@ class NewtonScene(Scene):
         # ---------- Curva ----------
         graph = axes.plot(_safe(f), color=YELLOW, x_range=[x_range[0], x_range[1]])
 
-        # Label do gráfico: posição estável no canto superior-direito do sistema
-        func_label = MathTex(r"f(x)", font_size=36)
-        # coloca o label um pouco "para dentro" do canto UR dos eixos
-        func_label.move_to(axes.get_corner(UR) + LEFT * 0.7 + DOWN * 0.6)
-        # fundo para legibilidade
-        func_label.add_background_rectangle(buff=0.08,opacity=0.9, stroke_width=0)
-
-        # Anti-sobreposição (se o label encostar no título, empurra o label pra baixo)
+        # Label do gráfico (com fundo p/ legibilidade)
         func_label = MathTex(r"f(x)", font_size=36)
         func_label.move_to(axes.get_corner(UR) + LEFT * 0.7 + DOWN * 0.6)
-
-        # Cria o retângulo de fundo explicitamente (compatível com todas as versões)
         label_bg = BackgroundRectangle(
             func_label, color=BLACK, fill_opacity=0.9, buff=0.08, stroke_width=0
         )
-        label_group = VGroup(label_bg, func_label)
+        label_group = Group(label_bg, func_label)
 
-        # Anti-sobreposição com o título usando o grupo (fundo + label)
+        # Anti-sobreposição com o título
         margin = 0.15
         if label_group.get_top()[1] > (title.get_bottom()[1] - margin):
             delta = label_group.get_top()[1] - (title.get_bottom()[1] - margin)
@@ -174,6 +175,9 @@ class NewtonScene(Scene):
         def tangent_line_at(x0: float, span: float = 3.5, color=BLUE):
             m = df(x0)
             y0 = f(x0)
+            if not np.isfinite(m) or not np.isfinite(y0):
+                m = 0.0
+                y0 = 0.0
             xA, xB = x0 - span, x0 + span
             yA = y0 + m * (xA - x0)
             yB = y0 + m * (xB - x0)
@@ -185,20 +189,23 @@ class NewtonScene(Scene):
 
         # ---------- Iterações (ponto móvel, tangente, queda vertical) ----------
         xk = xs[0]
-        moving_dot = Dot(axes.i2gp(xk, graph), color=RED).scale(0.7)
+        moving_dot = Dot(axes.i2gp(xk, graph), color=RED).scale(0.95)  # bolinha um pouco maior
         self.play(FadeIn(moving_dot))
 
         for i in range(len(xs) - 1):
             tan = tangent_line_at(xk, color=BLUE)
             self.play(Create(tan), run_time=0.35)
+            self.wait(0.12)
 
             xk1 = xs[i + 1]
             Xk1 = axes.coords_to_point(xk1, 0)
             self.play(moving_dot.animate.move_to(Xk1), run_time=0.35)
+            self.wait(0.12)
 
             Pk1 = axes.i2gp(xk1, graph)
             vertical = DashedLine(Xk1, Pk1, color=GRAY_B, dash_length=0.1)
             self.play(Create(vertical), moving_dot.animate.move_to(Pk1), run_time=0.35)
+            self.wait(0.12)
 
             self.play(FadeOut(tan), FadeOut(vertical), run_time=0.25)
             xk = xk1
@@ -221,7 +228,7 @@ class NewtonScene(Scene):
                 color=RED,
             )
             # limpa a tela e mostra a mensagem no topo
-            self.play(FadeOut(VGroup(*self.mobjects)))
+            self.play(FadeOut(Group(*self.mobjects)))
             self.play(FadeIn(info.to_edge(UP)))
 
         self.wait(0.8)
@@ -241,7 +248,7 @@ def render_newton_video(
     """
     - Se existir raiz real: estima raiz com refinamento e anima até |x_k - x_true| < max(tol, 9e-6).
     - Se NÃO existir raiz real: anima um número fixo de iterações e encerra com mensagem.
-    - Janela x_range é expandida para conter xs (e raiz, se existir).
+    - Intervalos x/y começam simétricos com R = |x0| + 5 e depois são expandidos para conter xs/raiz.
     """
     # parse
     x_sym, expr, f, df = parse_function(function)
@@ -290,8 +297,17 @@ def render_newton_video(
         xs = _sequence_fixed_steps(f, df, x0, steps=min(max_iter, 8))
         values_for_window = xs
 
+    # ----- Intervalos base simétricos a partir de x0 -----
+    base_x_range = _symmetric_range_from_x0(x0, step=x_range[2], extra=5.0)
+    base_y_range = _symmetric_range_from_x0(x0, step=y_range[2], extra=5.0)
+
     # ajustes de janela para conter xs (e x_true, se houver)
-    adj_x_range = _expand_range_to_include(x_range, values_for_window, pad=0.5, min_span=2.5)
+    adj_x_range = _expand_range_to_include(base_x_range, values_for_window, pad=0.5, min_span=2.5)
+
+    # Para y_range, mantemos simétrico com o mesmo raio usado no x (após expansão)
+    # Raio final do x:
+    x_radius = max(abs(adj_x_range[0]), abs(adj_x_range[1]))
+    adj_y_range = (-x_radius, x_radius, base_y_range[2])
 
     # hashing/nomes
     payload = {
@@ -299,7 +315,7 @@ def render_newton_video(
         "function": function,
         "x0": x0,
         "x_range": adj_x_range,
-        "y_range": y_range,
+        "y_range": adj_y_range,
         "max_iter": max_iter,
         "tol": tol,
         "fps": fps,
@@ -339,7 +355,7 @@ def render_newton_video(
         "df": df,
         "xs": xs,
         "x_range": adj_x_range,
-        "y_range": y_range,
+        "y_range": adj_y_range,
         "function_tex": function_tex,
         "has_real_root": has_real_root,
         "x_true": float(x_true) if (has_real_root and x_true is not None) else None,
