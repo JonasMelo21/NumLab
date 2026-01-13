@@ -7,7 +7,7 @@ def newton_iterations(
     expr_str: str, x0: float, tol: float = 1e-6, max_iter: int = 50
 ) -> Dict[str, Any]:
     """
-    Retorna o dicionário:
+    Returns the dictionary:
     {
       "method": "newton",
       "converged": bool,

@@ -28,7 +28,7 @@ export default function NewtonAnimation() {
       });
       setVideoUrl(url);
     } catch (err: any) {
-      setError(err?.message ?? "Erro ao gerar animação");
+      setError(err?.message ?? "Error generating animation");
     } finally {
       setLoading(false);
     }
@@ -45,15 +45,15 @@ export default function NewtonAnimation() {
             id="fn"
             value={fn}
             onChange={(e) => setFn(e.target.value)}
-            placeholder="Ex: x**3 - x - 2 (use ** em vez de ^)"
+            placeholder="Ex: x**3 - x - 2 (use ** instead of ^)"
           />
           <p className="text-xs text-gray-500 mt-1">
-            Dica: use <code>**</code> para potência; funções válidas: sin, cos, tan, exp, log, sqrt, abs, etc.
+            Tip: use <code>**</code> for power; valid functions: sin, cos, tan, exp, log, sqrt, abs, etc.
           </p>
         </div>
 
         <div>
-          <Label htmlFor="x0">x₀ (chute inicial)</Label>
+          <Label htmlFor="x0">x₀ (initial guess)</Label>
           <Input
             id="x0"
             type="number"
@@ -65,7 +65,7 @@ export default function NewtonAnimation() {
 
         <div className="md:col-span-3 flex gap-3">
           <Button type="submit" disabled={loading}>
-            {loading ? "Gerando..." : "Gerar animação"}
+            {loading ? "Generating..." : "Generate Animation"}
           </Button>
           {error && <span className="text-red-600 text-sm">{error}</span>}
         </div>
@@ -76,7 +76,7 @@ export default function NewtonAnimation() {
           <video key={videoUrl} src={videoUrl} controls className="w-full rounded-xl shadow" />
         ) : (
           <div className="text-sm text-gray-500">
-            A animação aparecerá aqui após gerar.
+            The animation will appear here after generation.
           </div>
         )}
       </div>

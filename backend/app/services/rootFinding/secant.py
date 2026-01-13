@@ -3,7 +3,7 @@ from typing import List, Dict, Any, Optional
 
 def secant_iterations(expr_str: str, x0: float, x1: float, tol: float = 1e-6, max_iter: int = 50) -> Dict[str, Any]:
     """
-    Retorna:
+    Returns:
     {
       "method": "secant",
       "converged": bool,

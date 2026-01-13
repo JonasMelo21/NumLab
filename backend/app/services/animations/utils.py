@@ -19,9 +19,9 @@ def parse_function(expr_str: str) -> Tuple[sp.Symbol, sp.Expr, Callable, Callabl
     try:
         expr = sp.sympify(expr_str, locals={**ALLOWED_FUNCS, "x": x})
     except Exception as e:
-        raise ValueError(f"Não consegui interpretar a função: {e}")
+        raise ValueError(f"Could not parse function: {e}")
     if len(expr.free_symbols - {x}) > 0:
-        raise ValueError("A função deve depender apenas de 'x'.")
+        raise ValueError("The function must depend only on 'x'.")
     d_expr = sp.diff(expr, x)
     f = sp.lambdify(x, expr, modules=["numpy", {"Abs": np.abs}])
     df = sp.lambdify(x, d_expr, modules=["numpy"])

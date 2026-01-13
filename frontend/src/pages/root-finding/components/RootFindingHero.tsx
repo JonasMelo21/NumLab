@@ -1,20 +1,11 @@
 import { useLang } from "../../../app/i18n/LangProvider";
 
 export default function RootFindingHero() {
-  const { lang } = useLang();
-
   const t = {
-    en: {
-      title: "Root-Finding Methods",
-      subtitle:
-        "Select one or more methods to visualize iterations, compare convergence, and inspect pseudo-code. Try Newton, Secant, Bisection, or Müller.",
-    },
-    pt: {
-      title: "Métodos de Encontrar Raízes",
-      subtitle:
-        "Selecione um ou mais métodos para visualizar iterações, comparar convergência e inspecionar o pseudocódigo. Experimente Newton, Secante, Bissecção ou Müller.",
-    },
-  }[lang];
+    title: "Root-Finding Methods",
+    subtitle:
+      "Select one or more methods to visualize iterations, compare convergence, and inspect pseudo-code. Try Newton, Secant, Bisection, or Müller.",
+  };
 
   return (
     <section className="w-full bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">

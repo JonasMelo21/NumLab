@@ -5,20 +5,12 @@ import MethodContent from "./components/MethodContent";
 import ComparisonSection from "./components/ComparisonSection";
 import { useLang } from "../../app/i18n/LangProvider";
 
-// Títulos por idioma
-const TITLES: Record<"en" | "pt", Record<Method, string>> = {
-  en: {
-    newton: "Newton's Method",
-    secant: "Secant Method",
-    bisection: "Bisection Method",
-    muller: "Muller's Method",
-  },
-  pt: {
-    newton: "Método de Newton",
-    secant: "Método da Secante",
-    bisection: "Método da Bissecção",
-    muller: "Método de Müller",
-  },
+// Titles (English only)
+const TITLES: Record<Method, string> = {
+  newton: "Newton's Method",
+  secant: "Secant Method",
+  bisection: "Bisection Method",
+  muller: "Muller's Method",
 };
 
 // Mantemos o pseudocódigo em inglês por enquanto.
@@ -160,18 +152,10 @@ export default function RootFindingPage() {
     }
   };
 
-  const emptyTexts =
-    lang === "pt"
-      ? {
-          title: "Nenhum método selecionado",
-          body:
-            "Selecione pelo menos um método no seletor acima para começar a explorar os algoritmos de encontrar raízes.",
-        }
-      : {
-          title: "No Methods Selected",
-          body:
-            "Please select at least one method from the selector above to begin exploring root-finding algorithms.",
-        };
+  const emptyTexts = {
+    title: "No Methods Selected",
+    body: "Please select at least one method from the selector above to begin exploring root-finding algorithms.",
+  };
 
   return (
     <>
@@ -186,7 +170,7 @@ export default function RootFindingPage() {
               <MethodContent
                 key={m}
                 method={m}
-                title={TITLES[lang][m]}
+                title={TITLES[m]}
                 pseudo={PSEUDOCODE[m]}
                 isCompact={selectedMethods.length > 1}
               />

@@ -10,30 +10,16 @@ export default function MethodSelector({
   selectedMethods: Method[];
   onMethodToggle: (m: Method) => void;
 }) {
-  const { lang } = useLang();
-
   const t = {
-    en: {
-      title: "Select Methods",
-      labels: {
-        newton: "Newton",
-        secant: "Secant",
-        bisection: "Bisection",
-        muller: "Müller",
-      },
-      ariaToggle: (label: string) => `Toggle ${label} method`,
+    title: "Select Methods",
+    labels: {
+      newton: "Newton",
+      secant: "Secant",
+      bisection: "Bisection",
+      muller: "Müller",
     },
-    pt: {
-      title: "Selecionar métodos",
-      labels: {
-        newton: "Newton",
-        secant: "Secante",
-        bisection: "Bissecção",
-        muller: "Müller",
-      },
-      ariaToggle: (label: string) => `Alternar método ${label}`,
-    },
-  }[lang];
+    ariaToggle: (label: string) => `Toggle ${label} method`,
+  };
 
   const methods: { key: Method; label: string }[] = [
     { key: "newton", label: t.labels.newton },

@@ -215,7 +215,7 @@ class NewtonScene(Scene):
             root_point = axes.coords_to_point(float(x_true), 0.0)
             dot_root = Dot(root_point, color=RED).scale(1.5)
             text_root = Text(
-                f"Root/Raiz ≈ {float(x_true):.6f}",
+                f"Root ≈ {float(x_true):.6f}",
                 font_size=36
             ).next_to(dot_root, DOWN + RIGHT, buff=0.6)
             self.play(FadeIn(dot_root), Write(text_root))
@@ -223,7 +223,7 @@ class NewtonScene(Scene):
         else:
             # Sem raiz real em R: mensagem explicativa
             info = Text(
-                "No Real Root\nSem raiz real (f(x) não intersecta o eixo x)",
+                "No Real Root (f(x) does not intersect x-axis)",
                 font_size=34,
                 color=RED,
             )
@@ -383,6 +383,6 @@ def render_newton_video(
                 shutil.copy2(matches[0], out_path)
 
     if not out_path.exists():
-        raise RuntimeError("Falha ao localizar o arquivo final do Manim para copiar.")
+        raise RuntimeError("Failed to locate final Manim output file for copying.")
 
     return {"filename": filename, "rel_dir": "animations"}

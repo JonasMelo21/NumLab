@@ -11,6 +11,11 @@ origins = [
     "http://127.0.0.1:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5174",
+    # Allow Vercel deployments
+    "https://*.vercel.app",
+    "https://numlab.vercel.app",
+    # Add your custom domain here after you buy it
+    # "https://api.jonasml.com", 
 ]
 
 app = FastAPI(title="NumLab API")

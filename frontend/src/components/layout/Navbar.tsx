@@ -2,64 +2,24 @@ import { useState } from "react";
 import { useLang } from "../../app/i18n/LangProvider";
 
 export default function Navbar() {
-  // 👇 usa o contexto global de idioma
-  const { lang, setLang } = useLang();
+  // Global language context (now always 'en')
+  const { lang } = useLang();
 
-  // mantém só o estado do menu mobile
+  // Mobile menu state
   const [open, setOpen] = useState(false);
 
-  // 👇 rótulos por idioma (temporário; depois podemos centralizar num dicionário global)
+  // Labels (English only)
   const t = {
-    en: {
-      how: "How to use NumLab",
-      about: "About the Authors",
-      switchToEn: "Switch to English",
-      switchToPt: "Mudar para português",
-    },
-    pt: {
-      how: "Como usar o NumLab",
-      about: "Sobre os Autores",
-      switchToEn: "Switch to English",
-      switchToPt: "Mudar para português",
-    },
-  }[lang];
+    how: "How to use NumLab",
+    about: "About the Authors",
+  };
 
   return (
     <header className="w-full bg-white border-b border-gray-200">
       <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Brand + Lang Switch */}
+        {/* Brand */}
         <div className="flex items-center space-x-4">
           <a href="/" className="text-xl font-semibold text-blue-600">NumLab</a>
-
-          {/* Language Switch Buttons (desktop) */}
-          <div className="hidden sm:flex items-center bg-gray-100 rounded-md p-1">
-            <button
-              onClick={() => setLang("en")}
-              className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
-                lang === "en"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-              aria-pressed={lang === "en"}
-              aria-label={t.switchToEn}
-              title={t.switchToEn}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLang("pt")}
-              className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
-                lang === "pt"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-              aria-pressed={lang === "pt"}
-              aria-label={t.switchToPt}
-              title={t.switchToPt}
-            >
-              PT
-            </button>
-          </div>
         </div>
 
         {/* Desktop links */}
@@ -74,36 +34,6 @@ export default function Navbar() {
 
         {/* Mobile actions */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* Lang switch (mobile) */}
-          <div className="flex items-center bg-gray-100 rounded-md p-1">
-            <button
-              onClick={() => setLang("en")}
-              className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
-                lang === "en"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-              aria-pressed={lang === "en"}
-              aria-label={t.switchToEn}
-              title={t.switchToEn}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLang("pt")}
-              className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
-                lang === "pt"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-              aria-pressed={lang === "pt"}
-              aria-label={t.switchToPt}
-              title={t.switchToPt}
-            >
-              PT
-            </button>
-          </div>
-
           {/* Mobile menu button */}
           <button
             className="p-2"

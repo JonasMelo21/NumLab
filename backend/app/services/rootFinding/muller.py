@@ -8,7 +8,7 @@ def muller_iterations(
     tol: float = 1e-6, max_iter: int = 100
 ) -> Dict[str, Any]:
     """
-    Retorna um dicionário no mesmo formato dos outros métodos:
+    Returns a dictionary in the same format as other methods:
     {
       "method": "muller",
       "converged": bool,
@@ -86,7 +86,7 @@ def muller_iterations(
 
         D = sqrt(disc)
 
-        # Evita cancelamento numérico: usa o denominador de maior magnitude
+        # Avoids numerical cancellation: use the denominator of larger magnitude
         denom1 = b + D
         denom2 = b - D
         denom = denom1 if abs(denom1) > abs(denom2) else denom2

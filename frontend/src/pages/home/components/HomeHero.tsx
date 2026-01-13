@@ -1,22 +1,10 @@
-import { useLang } from "../../../app/i18n/LangProvider";
-
 export default function HomeHero() {
-  const { lang } = useLang();
-
   const t = {
-    en: {
-      title: "NumLab – Laboratory of Numerical Analysis",
-      blurb:
-        "NumLab is a web platform designed to help students and enthusiasts visualize and compare numerical analysis algorithms through interactive simulations. It aims to support learning by bridging mathematical theory and computational practice, making complex methods easier to understand.",
-      github: "Owner's GitHub",
-    },
-    pt: {
-      title: "NumLab – Laboratório de Análise Numérica",
-      blurb:
-        "O NumLab é uma plataforma web para ajudar estudantes e entusiastas a visualizar e comparar algoritmos de análise numérica por meio de simulações interativas. A ideia é aproximar teoria matemática e prática computacional, tornando métodos complexos mais fáceis de entender.",
-      github: "GitHub do Responsável pelo projeto",
-    },
-  }[lang];
+    title: "NumLab – Laboratory of Numerical Analysis",
+    blurb:
+      "NumLab is a web platform designed to help students and enthusiasts visualize and compare numerical analysis algorithms through interactive simulations. It aims to support learning by bridging mathematical theory and computational practice, making complex methods easier to understand.",
+    github: "Owner's GitHub",
+  };
 
   return (
     <section className="w-full bg-gradient-to-br from-blue-50 to-indigo-100 py-16 px-4">

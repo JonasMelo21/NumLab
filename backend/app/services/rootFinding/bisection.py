@@ -3,7 +3,7 @@ from sympy import symbols, sympify, lambdify
 
 def bisection_iterations(expr_str: str, a: float, b: float, tol: float = 1e-6, max_iter: int = 100) -> Dict[str, Any]:
     """
-    Retorna:
+    Returns:
     {
       "method": "bisection",
       "converged": bool,

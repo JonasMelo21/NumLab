@@ -15,113 +15,58 @@ export default function MainContent() {
   const { lang } = useLang();
 
   const dict = {
-    en: {
-      sec1: "Methods in Calculus",
-      sec2: "Numerical Linear Algebra",
-      itemsCalc: {
-        root: {
-          title: "Root Finding Methods",
-          desc:
-            "Interactive visualizations for Newton, Secant, Bisection and Müller. Compare convergence speed and iteration paths.",
-        },
-        integ: {
-          title: "Numerical Integration & Differentiation",
-          desc:
-            "Trapezoidal, Simpson and higher-order Newton–Cotes rules, plus numerical differentiation with error analysis.",
-        },
-        ivp_bvp: {
-          title: "Initial & Boundary Value Problems (ODEs)",
-          desc:
-            "Euler, Heun, Runge–Kutta and multistep methods; shooting and finite differences for BVPs.",
-        },
-        pdes: {
-          title: "Partial Differential Equations (PDEs)",
-          desc:
-            "Parabolic, hyperbolic and elliptic problems with FTCS/BTCS/Crank–Nicolson, ADI and iterative solvers.",
-        },
-        bvp: {
-          title: "Boundary Value Problems for ODEs",
-          desc:
-            "Shooting method and finite differences to handle boundary conditions efficiently.",
-        },
+    sec1: "Methods in Calculus",
+    sec2: "Numerical Linear Algebra",
+    itemsCalc: {
+      root: {
+        title: "Root Finding Methods",
+        desc:
+          "Interactive visualizations for Newton, Secant, Bisection and Müller. Compare convergence speed and iteration paths.",
       },
-      itemsNla: {
-        eigen: {
-          title: "Eigenvalues and Eigenvectors",
-          desc:
-            "Compute eigenvalues/eigenvectors numerically with power/QR methods and more.",
-        },
-        iterative: {
-          title: "Iterative Methods",
-          desc:
-            "Solve linear systems via Jacobi, Gauss–Seidel, SOR and Krylov subspace methods.",
-        },
-        direct: {
-          title: "Direct Methods",
-          desc:
-            "LU/QR factorization, Gaussian elimination and variants for stable solutions.",
-        },
-        nonlinear: {
-          title: "Nonlinear Systems",
-          desc:
-            "Techniques for systems of nonlinear equations with convergence insights.",
-        },
+      integ: {
+        title: "Numerical Integration & Differentiation",
+        desc:
+          "Trapezoidal, Simpson and higher-order Newton–Cotes rules, plus numerical differentiation with error analysis.",
+      },
+      ivp_bvp: {
+        title: "Initial & Boundary Value Problems (ODEs)",
+        desc:
+          "Euler, Heun, Runge–Kutta and multistep methods; shooting and finite differences for BVPs.",
+      },
+      pdes: {
+        title: "Partial Differential Equations (PDEs)",
+        desc:
+          "Parabolic, hyperbolic and elliptic problems with FTCS/BTCS/Crank–Nicolson, ADI and iterative solvers.",
+      },
+      bvp: {
+        title: "Boundary Value Problems for ODEs",
+        desc:
+          "Shooting method and finite differences to handle boundary conditions efficiently.",
       },
     },
-    pt: {
-      sec1: "Métodos em Cálculo",
-      sec2: "Álgebra Linear Numérica",
-      itemsCalc: {
-        root: {
-          title: "Métodos de Encontrar Raízes",
-          desc:
-            "Visualizações interativas para Newton, Secante, Bissecção e Müller. Compare velocidade de convergência e trajetórias de iteração.",
-        },
-        integ: {
-          title: "Integração e Diferenciação Numéricas",
-          desc:
-            "Regra dos Trapézios, Simpson e Newton–Cotes de ordem superior, além de diferenciação numérica com análise de erro.",
-        },
-        ivp_bvp: {
-          title: "Problemas de Valor Inicial e de Contorno (EDOs)",
-          desc:
-            "Métodos de Euler, Heun, Runge–Kutta e multietapas; shooting e diferenças finitas para PVCs.",
-        },
-        pdes: {
-          title: "Equações Diferenciais Parciais (EDPs)",
-          desc:
-            "Problemas parabólicos, hiperbólicos e elípticos com FTCS/BTCS/Crank–Nicolson, ADI e solvers iterativos.",
-        },
-        bvp: {
-          title: "Problemas de Valor de Contorno para EDOs",
-          desc:
-            "Método do tiro e diferenças finitas para tratar condições de contorno de forma eficiente.",
-        },
+    itemsNla: {
+      eigen: {
+        title: "Eigenvalues and Eigenvectors",
+        desc:
+          "Compute eigenvalues/eigenvectors numerically with power/QR methods and more.",
       },
-      itemsNla: {
-        eigen: {
-          title: "Autovalores e Autovetores",
-          desc:
-            "Cálculo numérico de autovalores/autovetores com métodos da potência/QR e outros.",
-        },
-        iterative: {
-          title: "Métodos Iterativos",
-          desc:
-            "Resolver sistemas lineares via Jacobi, Gauss–Seidel, SOR e métodos de subespaços de Krylov.",
-        },
-        direct: {
-          title: "Métodos Diretos",
-          desc:
-            "Fatorações LU/QR, eliminação de Gauss e variantes para soluções estáveis.",
-        },
-        nonlinear: {
-          title: "Sistemas Não Lineares",
-          desc:
-            "Técnicas para sistemas de equações não lineares com insights de convergência.",
-        },
+      iterative: {
+        title: "Iterative Methods",
+        desc:
+          "Solve linear systems via Jacobi, Gauss–Seidel, SOR and Krylov subspace methods.",
+      },
+      direct: {
+        title: "Direct Methods",
+        desc:
+          "LU/QR factorization, Gaussian elimination and variants for stable solutions.",
+      },
+      nonlinear: {
+        title: "Nonlinear Systems",
+        desc:
+          "Techniques for systems of nonlinear equations with convergence insights.",
       },
     },
-  }[lang];
+  };
 
   const calculus = [
     {
